@@ -21,14 +21,5 @@
         "vite-plus": "latest",
         "wrangler": "^4.85.0"
     },
-    "packageManager": "pnpm@10.33.0",
-    "pnpm": {
-        "overrides": {
-            "vite": "npm:@voidzero-dev/vite-plus-core@latest"
-        },
-        "onlyBuiltDependencies": [
-            "remix",
-            "workerd"
-        ]
-    }
+    "packageManager": "pnpm@11.17.0"
 }

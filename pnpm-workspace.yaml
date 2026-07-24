@@ -7,3 +7,18 @@ packages:
     - railway-bun
     - railway-node
     - vercel
+
+allowBuilds:
+    remix: true
+    workerd: true
+    # Binaries arrive via optional platform packages; the postinstall
+    # scripts are redundant here.
+    esbuild: false
+    sharp: false
+
+# This repository validates @pitlane/dev releases the moment they publish;
+# pnpm 11's minimum-release-age gate would otherwise block fresh versions.
+# Scaffolded apps carry the same exclusion in their own pnpm-workspace.yaml —
+# a Pitlane template trusts Pitlane's package at any age.
+minimumReleaseAgeExclude:
+    - "@pitlane/dev"

@@ -23,13 +23,5 @@
     "packageManager": "bun@1.3.14",
     "overrides": {
         "vite": "npm:@voidzero-dev/vite-plus-core@latest"
-    },
-    "pnpm": {
-        "overrides": {
-            "vite": "npm:@voidzero-dev/vite-plus-core@latest"
-        },
-        "onlyBuiltDependencies": [
-            "remix"
-        ]
     }
 }

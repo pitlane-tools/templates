@@ -1,0 +1,13 @@
+# pnpm 11 settings for this app (older pnpm reads the same intent from
+# package.json fields it no longer supports).
+allowBuilds:
+    remix: true
+    # Binaries arrive via optional platform packages; the postinstall
+    # scripts are redundant.
+    esbuild: false
+    sharp: false
+
+# Trust Pitlane's own package at any release age; everything else keeps
+# pnpm's default minimum-release-age protection.
+minimumReleaseAgeExclude:
+    - "@pitlane/dev"
