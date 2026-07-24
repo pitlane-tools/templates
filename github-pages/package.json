@@ -15,7 +15,7 @@
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
         "oxlint-tsgolint": "^0.22.1",
-        "typescript": "rc",
+        "typescript": "^7.0.2",
         "vite": "npm:@voidzero-dev/vite-plus-core@latest",
         "vite-plugin-devtools-json": "^1.0.0",
         "vite-plus": "latest"
