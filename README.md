@@ -53,7 +53,10 @@ pnpm install
 pnpm --filter ./railway-node exec vp build   # build any one template
 ```
 
-CI builds every template against `@pitlane/dev` from npm on pushes and pull requests.
+CI builds every template against `@pitlane/dev` from npm on pushes and pull requests, and
+[deploy-demo](./.github/workflows/deploy-demo.yml) redeploys the
+[live Cloudflare demo](https://pitlane-cloudflare.mark-malstrom.workers.dev) whenever the
+`cloudflare` template changes (plus weekly, to pick up new dependency releases).
 
 ## License
 
