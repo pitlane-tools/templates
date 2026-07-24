@@ -1,0 +1,7 @@
+node_modules
+dist
+# Local PGlite development database
+.data/postgres/
+*.local
+.env
+.DS_Store

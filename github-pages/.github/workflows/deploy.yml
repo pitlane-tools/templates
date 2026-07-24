@@ -1,0 +1,46 @@
+# .github/workflows/deploy.yml
+name: Deploy
+
+on:
+    push:
+        branches: [main]
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: pages
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: voidzero-dev/setup-vp@v1
+              with:
+                  cache: true
+
+            - run: vp install --frozen-lockfile
+
+            # Project pages live under /<repo>/; delete BASE_PATH for user/org
+            # pages (username.github.io) or a custom domain. The build task
+            # also stages sw.js and the SPA 404 fallback into dist/client.
+            - run: vp run build
+              env:
+                  BASE_PATH: /${{ github.event.repository.name }}/
+
+            - uses: actions/configure-pages@v5
+
+            - uses: actions/upload-pages-artifact@v3
+              with:
+                  path: dist/client
+
+            - id: deployment
+              uses: actions/deploy-pages@v4

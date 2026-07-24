@@ -1,0 +1,8 @@
+node_modules
+dist
+.netlify
+# Local PGlite development database
+.data/postgres/
+*.local
+.env
+.DS_Store

@@ -1,0 +1,105 @@
+# .github/workflows/ci.yml — build every template on every push/PR.
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+permissions:
+    contents: read
+
+jobs:
+    node-templates:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                template: [cloudflare, github-pages, netlify, railway-bun, railway-node, vercel]
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: pnpm/action-setup@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+
+            - run: pnpm install --no-frozen-lockfile
+              env:
+                  # Template postinstalls (workerd, remix) are allowed by the
+                  # root package.json onlyBuiltDependencies list.
+                  CI: "true"
+
+            - run: pnpm --filter ./${{ matrix.template }} exec vp build
+
+    deno-templates:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                template: [deno-deploy, railway-deno]
+        defaults:
+            run:
+                working-directory: ${{ matrix.template }}
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: denoland/setup-deno@v2
+              with:
+                  deno-version: v2.x
+
+            - run: deno install --allow-scripts
+
+            - run: deno task build
+
+            - run: deno task check
+
+    # The PGlite dev database is Postgres-in-WASM; also prove the same
+    # migrations and queries run against a conventional PostgreSQL server.
+    postgres-integration:
+        runs-on: ubuntu-latest
+        services:
+            postgres:
+                image: postgres:16
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                    POSTGRES_DB: guestbook
+                ports:
+                    - 5432:5432
+                options: >-
+                    --health-cmd "pg_isready -U postgres"
+                    --health-interval 5s
+                    --health-timeout 5s
+                    --health-retries 10
+        env:
+            DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/guestbook
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: pnpm/action-setup@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+
+            - run: pnpm install --no-frozen-lockfile
+
+            - run: node db/migrate.ts
+              working-directory: vercel
+
+            - run: |
+                  node --input-type=module -e "
+                  import { Pool } from 'pg';
+                  let pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 1 });
+                  let write = await pool.query(
+                      'INSERT INTO guest_book (name, message) VALUES (\$1, \$2) RETURNING id',
+                      ['CI', 'hello from a real Postgres'],
+                  );
+                  let read = await pool.query('SELECT name, message FROM guest_book');
+                  console.log(read.rows);
+                  if (read.rows.length !== 1) process.exit(1);
+                  await pool.end();
+                  "
+              working-directory: vercel

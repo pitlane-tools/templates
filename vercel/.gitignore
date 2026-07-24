@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+.nitro
+.output
+# Local PGlite development database
+.data/postgres/
+*.local
+.env
+.DS_Store

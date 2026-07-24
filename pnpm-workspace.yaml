@@ -1,0 +1,9 @@
+# The two Deno templates (railway-deno, deno-deploy) are Deno-native — no
+# package.json — and install with `deno install` instead of pnpm.
+packages:
+    - cloudflare
+    - github-pages
+    - netlify
+    - railway-bun
+    - railway-node
+    - vercel

@@ -1,0 +1,32 @@
+# .github/workflows/deploy.yml
+name: Deploy
+
+on:
+    push:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: denoland/setup-deno@v2
+              with:
+                  deno-version: v2.x
+
+            - run: deno install --allow-scripts
+
+            - run: deno task build
+
+            - run: deno task db:migrate
+              env:
+                  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+            # Replace `my-remix-app` with your Deno Deploy app name.
+            - run: deno deploy --app my-remix-app --prod
+              env:
+                  DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}

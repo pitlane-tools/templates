@@ -1,0 +1,30 @@
+{
+    "nodeModulesDir": "auto",
+    "imports": {
+        "@electric-sql/pglite": "npm:@electric-sql/pglite@^0.5.4",
+        "@electric-sql/pglite-socket": "npm:@electric-sql/pglite-socket@^0.2.7",
+        "@pitlane/dev": "npm:@pitlane/dev@^0.1.0",
+        "pg": "npm:pg@^8.22.0",
+        "remix": "npm:remix@3.0.0-beta.5",
+        "vite": "npm:vite@^8.1.5"
+    },
+    "tasks": {
+        "dev": "mkdir -p .data && deno run -A npm:@electric-sql/pglite-socket@^0.2.7/pglite-server --db=./.data/postgres --port=54329 --max-connections=10 --include-database-url --run 'deno task dev:ready'",
+        "dev:ephemeral": "deno run -A npm:@electric-sql/pglite-socket@^0.2.7/pglite-server --db=memory:// --port=54329 --max-connections=10 --include-database-url --run 'deno task dev:ready'",
+        "dev:ready": "deno task db:migrate && deno run -A npm:vite@^8.1.5 dev --host",
+        "build": "deno run -A npm:vite@^8.1.5 build",
+        "preview": "deno run -A npm:vite@^8.1.5 preview",
+        "check": "deno task build && deno check db/migrate.ts main.ts",
+        "db:migrate": "deno -A db/migrate.ts",
+        "db:reset": "rm -rf .data/postgres",
+        "start": "deno run -A main.ts"
+    },
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "remix/ui"
+    },
+    "fmt": {
+        "indentWidth": 4,
+        "lineWidth": 100
+    }
+}

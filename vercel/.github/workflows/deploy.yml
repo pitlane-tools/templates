@@ -1,0 +1,36 @@
+# .github/workflows/deploy.yml
+name: Deploy
+
+on:
+    push:
+        branches: [main]
+
+permissions:
+    contents: read
+    deployments: write
+
+env:
+    VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+    VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: voidzero-dev/setup-vp@v1
+              with:
+                  cache: true
+
+            - run: vp install --frozen-lockfile
+
+            - run: vpx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+            - run: vp run db:migrate
+              env:
+                  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+            - run: vpx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+            - run: vpx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

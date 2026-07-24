@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "jsxImportSource": "remix/ui",
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "types": [
+            "@types/node",
+            "@types/bun",
+            "vite/client",
+            "@pitlane/dev/assets"
+        ]
+    },
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["dist"]
+}

@@ -1,0 +1,33 @@
+# .github/workflows/deploy.yml
+name: Deploy
+
+on:
+    push:
+        branches: [main]
+
+permissions:
+    contents: read
+    deployments: write
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: voidzero-dev/setup-vp@v1
+              with:
+                  cache: true
+
+            - run: vp install --frozen-lockfile
+
+            - run: vp build
+
+            - run: vp run db:migrate
+              env:
+                  NETLIFY_DATABASE_URL: ${{ secrets.NETLIFY_DATABASE_URL }}
+
+            - run: vpx netlify-cli deploy --no-build --prod
+              env:
+                  NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                  NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

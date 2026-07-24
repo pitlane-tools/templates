@@ -1,0 +1,12 @@
+node_modules
+dist
+*.tgz
+*.local
+.DS_Store
+.wrangler
+.netlify
+.vercel
+.output
+.nitro
+db/data.db
+pnpm-lock.yaml

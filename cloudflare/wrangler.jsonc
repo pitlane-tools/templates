@@ -1,0 +1,19 @@
+{
+    "name": "pitlane-cloudflare",
+    "main": "app/entry.server.tsx",
+    "assets": {
+        "directory": "dist/client",
+    },
+    "compatibility_date": "2026-04-02",
+    "compatibility_flags": ["nodejs_compat"],
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "pitlane-cloudflare-db",
+            // Replace with the `database_id` printed by `vpx wrangler d1 create` before
+            // deploying. Local dev works as-is.
+            "database_id": "local",
+            "migrations_dir": "db/migrations",
+        },
+    ],
+}
