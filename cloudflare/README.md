@@ -1,6 +1,6 @@
 # Pitlane — Cloudflare Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), deploying to [Cloudflare Workers](https://developers.cloudflare.com/workers/) with a [D1](https://developers.cloudflare.com/d1/) database.
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), deploying to [Cloudflare Workers](https://developers.cloudflare.com/workers/) with a [D1](https://developers.cloudflare.com/d1/) database. **[See it live →](https://pitlane-cloudflare.mark-malstrom.workers.dev)**
 
 | Runtime            | Package manager | Database     | Deploys to                                                       |
 | ------------------ | --------------- | ------------ | ---------------------------------------------------------------- |

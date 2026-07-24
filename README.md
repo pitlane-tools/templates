@@ -10,6 +10,8 @@ Scaffold with [giget](https://github.com/unjs/giget) — pick a template directo
 npx giget github:pitlane-tools/templates/<template> my-app
 ```
 
+The `cloudflare` template runs live at [pitlane-cloudflare.mark-malstrom.workers.dev](https://pitlane-cloudflare.mark-malstrom.workers.dev) — sign the guest book.
+
 ## Templates
 
 | Template                         | Runtime            | Database                 | Deploys to         |
