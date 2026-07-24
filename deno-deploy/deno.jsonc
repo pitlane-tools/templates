@@ -19,6 +19,12 @@
         "db:reset": "rm -rf .data/postgres",
         "start": "deno run -A main.ts"
     },
+    "deploy": {
+        // `deno deploy` uploads respect .gitignore. Un-exclude the CI-built
+        // output so the deploy tarball ships `dist/` — the Vite build always
+        // runs in CI (or locally), never on Deno Deploy.
+        "exclude": ["!dist"]
+    },
     "compilerOptions": {
         "jsx": "react-jsx",
         "jsxImportSource": "remix/ui"

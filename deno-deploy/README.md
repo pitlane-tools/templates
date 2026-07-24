@@ -82,6 +82,10 @@ Follow the [Deno Deploy guide](https://pitlane.tools/deploy/deno-deploy). Short 
    then push to `main`: CI builds, migrates, and ships `dist/` + `main.ts` with
    `deno deploy --prod`.
 
+The upload respects `.gitignore`, which would normally drop the built `dist/` — the
+`"deploy": { "exclude": ["!dist"] }` entry in [deno.json](./deno.json) un-excludes it
+so the CI-built output ships.
+
 To deploy from your machine instead:
 
 ```sh
