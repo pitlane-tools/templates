@@ -6,6 +6,7 @@
         "#app/*": "./app/*"
     },
     "dependencies": {
+        "@pitlane/theme": "^0.1.0",
         "idb-keyval": "^6.2.2",
         "remix": "github:remix-run/remix#preview/pr-11629&path:packages/remix"
     },

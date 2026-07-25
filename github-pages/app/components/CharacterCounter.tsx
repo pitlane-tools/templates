@@ -1,7 +1,10 @@
-import { type Handle, css, on } from "remix/ui";
+import { css } from "@pitlane/theme";
+// cssRaw is remix/ui's untyped css(), used only for values the branded css()
+// cannot express — here, the inset box-shadow (DTCG shadow tokens have no inset).
+import { type Handle, css as cssRaw, on } from "remix/ui";
 import { inputStyle } from "remix/ui/combobox";
 
-import { theme } from "#app/components/Theme.tsx";
+import { t } from "#app/theme.ts";
 
 const MAX_LENGTH = 280;
 
@@ -17,7 +20,7 @@ export function CharacterCounter(handle: Handle) {
                     css({
                         display: "flex",
                         flexDirection: "column",
-                        gap: theme.space.sm,
+                        gap: t.space.sm,
                     }),
                 ]}
             >
@@ -30,8 +33,10 @@ export function CharacterCounter(handle: Handle) {
                         }),
                         inputStyle,
                         css({
-                            paddingBlock: theme.space.sm,
+                            paddingBlock: t.space.sm,
                             resize: "vertical",
+                        }),
+                        cssRaw({
                             boxShadow:
                                 "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
                         }),
@@ -45,9 +50,12 @@ export function CharacterCounter(handle: Handle) {
                     data-warning={remaining <= 20 ? "" : undefined}
                     mix={[
                         css({
-                            fontSize: theme.fontSize.xs,
-                            color: theme.colors.text.muted,
+                            fontSize: t.fontSize.xs,
+                            color: t.colors.text.muted,
                             textAlign: "right",
+                        }),
+                        // Inline light-dark warning color; not a palette token.
+                        cssRaw({
                             "&[data-warning]": {
                                 color: "light-dark(#ef4444, #f87171)",
                             },

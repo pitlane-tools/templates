@@ -1,9 +1,13 @@
 import type { GuestBookEntry } from "#app/data/schemas.ts";
 
 import { CharacterCounter } from "#app/components/CharacterCounter.tsx";
-import { theme } from "#app/components/Theme.tsx";
 import { routes } from "#app/routes.ts";
-import { css, type Handle } from "remix/ui";
+import { t } from "#app/theme.ts";
+import { css } from "@pitlane/theme";
+// cssRaw is remix/ui's untyped css(), used only for values the branded css()
+// cannot express: non-token layout lengths, inset box-shadows, and the inline
+// light-dark() hover color that is not a palette token.
+import { css as cssRaw, type Handle } from "remix/ui";
 import { button } from "remix/ui/button";
 import { inputStyle } from "remix/ui/combobox";
 
@@ -22,9 +26,11 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
+                        fontFamily: t.fontFamily.sans,
+                        color: t.colors.text.primary,
+                    }),
+                    cssRaw({
                         minHeight: "100vh",
-                        fontFamily: theme.fontFamily.sans,
-                        color: theme.colors.text.primary,
                         padding: "4rem 1rem",
                     }),
                 ]}
@@ -35,7 +41,9 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
-                            gap: theme.space.xl,
+                            gap: t.space.xl,
+                        }),
+                        cssRaw({
                             maxWidth: "32rem",
                         }),
                     ]}
@@ -47,16 +55,18 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         />
                         <img
                             alt="Remix 3"
-                            mix={[css({ height: "2.5rem" })]}
+                            mix={[cssRaw({ height: "2.5rem" })]}
                             src="/remix-3-logo-light.svg"
                         />
                     </picture>
                     <h1
                         mix={[
                             css({
+                                fontWeight: t.fontWeight.bold,
+                                letterSpacing: t.letterSpacing.tight,
+                            }),
+                            cssRaw({
                                 fontSize: "2.25rem",
-                                fontWeight: theme.fontWeight.bold,
-                                letterSpacing: theme.letterSpacing.tight,
                             }),
                         ]}
                     >
@@ -68,7 +78,9 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                     mix={[
                         css({
                             display: "flex",
-                            gap: theme.space.xxl,
+                            gap: t.space.xxl,
+                        }),
+                        cssRaw({
                             marginTop: "2rem",
                         }),
                     ]}
@@ -79,7 +91,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
 
                 <section
                     mix={[
-                        css({
+                        cssRaw({
                             marginTop: "3rem",
                             width: "100%",
                             maxWidth: "28rem",
@@ -90,7 +102,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                     ]}
                 >
                     <div
-                        mix={css({
+                        mix={cssRaw({
                             display: "flex",
                             flexDirection: "column",
                             gap: "0.5rem",
@@ -98,8 +110,8 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                     >
                         <h2
                             mix={css({
-                                fontSize: theme.fontSize.xl,
-                                fontWeight: theme.fontWeight.semibold,
+                                fontSize: t.fontSize.xl,
+                                fontWeight: t.fontWeight.semibold,
                             })}
                         >
                             Guest Book
@@ -110,7 +122,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                                     css({
                                         display: "flex",
                                         flexDirection: "column",
-                                        gap: theme.space.lg,
+                                        gap: t.space.lg,
                                     }),
                                 ]}
                             >
@@ -119,18 +131,18 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                                         key={entry.id}
                                         mix={[
                                             css({
-                                                padding: theme.space.lg,
-                                                borderRadius: theme.radius.lg,
-                                                backgroundColor: theme.surface.lvl1,
-                                                border: `1px solid ${theme.colors.border.subtle}`,
+                                                padding: t.space.lg,
+                                                borderRadius: t.radius.lg,
+                                                backgroundColor: t.surface.lvl1,
+                                                border: `1px solid ${t.colors.border.subtle}`,
                                             }),
                                         ]}
                                     >
                                         <p
                                             mix={[
                                                 css({
-                                                    fontWeight: theme.fontWeight.medium,
-                                                    color: theme.colors.text.primary,
+                                                    fontWeight: t.fontWeight.medium,
+                                                    color: t.colors.text.primary,
                                                 }),
                                             ]}
                                         >
@@ -139,9 +151,9 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                                         <p
                                             mix={[
                                                 css({
-                                                    color: theme.colors.text.muted,
-                                                    fontSize: theme.fontSize.sm,
-                                                    marginTop: theme.space.sm,
+                                                    color: t.colors.text.muted,
+                                                    fontSize: t.fontSize.sm,
+                                                    marginTop: t.space.sm,
                                                 }),
                                             ]}
                                         >
@@ -160,14 +172,14 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                             css({
                                 display: "flex",
                                 flexDirection: "column",
-                                gap: theme.space.lg,
+                                gap: t.space.lg,
                             }),
                         ]}
                     >
                         <input
                             mix={[
                                 inputStyle,
-                                css({
+                                cssRaw({
                                     boxShadow:
                                         "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
                                 }),
@@ -206,9 +218,11 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
                 target="_blank"
                 mix={[
                     css({
-                        color: theme.colors.text.link,
-                        fontSize: theme.fontSize.md,
-                        fontWeight: theme.fontWeight.medium,
+                        color: t.colors.text.link,
+                        fontSize: t.fontSize.md,
+                        fontWeight: t.fontWeight.medium,
+                    }),
+                    cssRaw({
                         "&:hover": {
                             color: "light-dark(#1e40af, #93c5fd)",
                         },

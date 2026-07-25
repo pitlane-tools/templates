@@ -1,6 +1,23 @@
+/* The reset layer must lose to the `rmx` layer that css() mixins target. */
+@layer rmx-reset, rmx;
+
 @layer rmx-reset {
     :root {
         color-scheme: light dark;
+    }
+
+    /*
+      Base document styles. They live in the reset layer so css() mixins (layer
+      `rmx`) win, and reference the custom properties <Theme /> installs, which
+      flip with prefers-color-scheme.
+    */
+
+    body {
+        font-family: var(--font-family-sans);
+        font-size: var(--font-size-md);
+        line-height: var(--line-height-normal);
+        color: var(--colors-text-primary);
+        background-color: var(--surface-lvl0);
     }
 
     /*

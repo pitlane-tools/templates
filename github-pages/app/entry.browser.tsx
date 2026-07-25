@@ -1,9 +1,9 @@
 import { createRoot } from "remix/ui";
 import { SPA } from "remix/ui/spa";
 
-import { Theme } from "#app/components/Theme.tsx";
 import { router } from "#app/router.tsx";
 import "#app/styles/preflight.css";
+import { Theme } from "#app/theme.ts";
 
 // The whole app runs in the browser: the SPA component intercepts
 // same-origin navigations and form submissions, dispatches them through the
