@@ -1,6 +1,4 @@
 import { css } from "@pitlane/theme";
-// cssRaw is remix/ui's untyped css(), for the non-token layout lengths below.
-import { css as cssRaw } from "remix/ui";
 
 import { routes } from "#app/routes.ts";
 import { t } from "#app/theme.ts";
@@ -15,12 +13,10 @@ export function NotFound() {
                     alignItems: "center",
                     gap: t.space.lg,
                     justifyContent: "center",
+                    minHeight: t.size.screen,
+                    padding: [t.layout.page, t.layout.gutter],
                     fontFamily: t.fontFamily.sans,
                     color: t.colors.text.primary,
-                }),
-                cssRaw({
-                    minHeight: "100vh",
-                    padding: "4rem 1rem",
                 }),
             ]}
         >

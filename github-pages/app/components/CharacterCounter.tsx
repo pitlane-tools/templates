@@ -1,9 +1,7 @@
 import { css } from "@pitlane/theme";
-// cssRaw is remix/ui's untyped css(), used only for values the branded css()
-// cannot express — here, the inset box-shadow (DTCG shadow tokens have no inset).
-import { type Handle, css as cssRaw, on } from "remix/ui";
-import { inputStyle } from "remix/ui/combobox";
+import { type Handle, on } from "remix/ui";
 
+import { field } from "#app/styles/recipes.ts";
 import { t } from "#app/theme.ts";
 
 const MAX_LENGTH = 280;
@@ -31,15 +29,7 @@ export function CharacterCounter(handle: Handle) {
                             count = event.currentTarget.value.length;
                             handle.update();
                         }),
-                        inputStyle,
-                        css({
-                            paddingBlock: t.space.sm,
-                            resize: "vertical",
-                        }),
-                        cssRaw({
-                            boxShadow:
-                                "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
-                        }),
+                        field(),
                     ]}
                     name="message"
                     placeholder="Leave a message..."
@@ -53,11 +43,8 @@ export function CharacterCounter(handle: Handle) {
                             fontSize: t.fontSize.xs,
                             color: t.colors.text.muted,
                             textAlign: "right",
-                        }),
-                        // Inline light-dark warning color; not a palette token.
-                        cssRaw({
                             "&[data-warning]": {
-                                color: "light-dark(#ef4444, #f87171)",
+                                color: t.colors.text.warning,
                             },
                         }),
                     ]}

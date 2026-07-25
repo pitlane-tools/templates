@@ -1,15 +1,12 @@
+import { css } from "@pitlane/theme";
+import { type Handle } from "remix/ui";
+
 import type { GuestBookEntry } from "#app/data/schemas.ts";
 
 import { CharacterCounter } from "#app/components/CharacterCounter.tsx";
 import { routes } from "#app/routes.ts";
+import { button, field } from "#app/styles/recipes.ts";
 import { t } from "#app/theme.ts";
-import { css } from "@pitlane/theme";
-// cssRaw is remix/ui's untyped css(), used only for values the branded css()
-// cannot express: non-token layout lengths, inset box-shadows, and the inline
-// light-dark() hover color that is not a palette token.
-import { css as cssRaw, type Handle } from "remix/ui";
-import { button } from "remix/ui/button";
-import { inputStyle } from "remix/ui/combobox";
 
 export interface WelcomeProps {
     entries: GuestBookEntry[];
@@ -26,12 +23,10 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
+                        minHeight: t.size.screen,
+                        padding: [t.layout.page, t.layout.gutter],
                         fontFamily: t.fontFamily.sans,
                         color: t.colors.text.primary,
-                    }),
-                    cssRaw({
-                        minHeight: "100vh",
-                        padding: "4rem 1rem",
                     }),
                 ]}
             >
@@ -42,9 +37,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                             flexDirection: "column",
                             alignItems: "center",
                             gap: t.space.xl,
-                        }),
-                        cssRaw({
-                            maxWidth: "32rem",
+                            maxWidth: t.size.prose,
                         }),
                     ]}
                 >
@@ -55,18 +48,16 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         />
                         <img
                             alt="Remix 3"
-                            mix={[cssRaw({ height: "2.5rem" })]}
+                            mix={[css({ height: t.size.logo })]}
                             src="/remix-3-logo-light.svg"
                         />
                     </picture>
                     <h1
                         mix={[
                             css({
+                                fontSize: t.fontSize.xxxl,
                                 fontWeight: t.fontWeight.bold,
                                 letterSpacing: t.letterSpacing.tight,
-                            }),
-                            cssRaw({
-                                fontSize: "2.25rem",
                             }),
                         ]}
                     >
@@ -79,9 +70,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         css({
                             display: "flex",
                             gap: t.space.xxl,
-                        }),
-                        cssRaw({
-                            marginTop: "2rem",
+                            marginTop: t.layout.section,
                         }),
                     ]}
                 >
@@ -91,21 +80,21 @@ export function Welcome(handle: Handle<WelcomeProps>) {
 
                 <section
                     mix={[
-                        cssRaw({
-                            marginTop: "3rem",
-                            width: "100%",
-                            maxWidth: "28rem",
+                        css({
                             display: "flex",
                             flexDirection: "column",
-                            gap: "2rem",
+                            gap: t.layout.section,
+                            width: t.size.full,
+                            maxWidth: t.size.column,
+                            marginTop: t.layout.block,
                         }),
                     ]}
                 >
                     <div
-                        mix={cssRaw({
+                        mix={css({
                             display: "flex",
                             flexDirection: "column",
-                            gap: "0.5rem",
+                            gap: t.space.md,
                         })}
                     >
                         <h2
@@ -176,18 +165,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                             }),
                         ]}
                     >
-                        <input
-                            mix={[
-                                inputStyle,
-                                cssRaw({
-                                    boxShadow:
-                                        "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
-                                }),
-                            ]}
-                            name="name"
-                            placeholder="Your name"
-                            required
-                        />
+                        <input mix={[field()]} name="name" placeholder="Your name" required />
                         <CharacterCounter />
                         <button
                             mix={[button({ tone: "primary" }), css({ alignSelf: "flex-end" })]}
@@ -221,10 +199,8 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
                         color: t.colors.text.link,
                         fontSize: t.fontSize.md,
                         fontWeight: t.fontWeight.medium,
-                    }),
-                    cssRaw({
                         "&:hover": {
-                            color: "light-dark(#1e40af, #93c5fd)",
+                            color: t.colors.text.linkHover,
                         },
                     }),
                 ]}

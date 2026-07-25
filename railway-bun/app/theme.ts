@@ -13,10 +13,7 @@ import { createTheme } from "@pitlane/theme";
  * Reference tokens in `css()` mixins through the exported `t`, e.g.
  * `css({ gap: t.space.md })`.
  */
-export let {
-    token: t,
-    Theme,
-} = createTheme(
+export let { token: t, Theme } = createTheme(
     {
         fontFamily: {
             $type: "fontFamily",
@@ -56,6 +53,21 @@ export let {
             xl: { $value: "16px" },
             xxl: { $value: "24px" },
         },
+        layout: {
+            $type: "dimension",
+            gutter: { $value: "{space.xl}" },
+            section: { $value: "32px" },
+            block: { $value: "48px" },
+            page: { $value: "64px" },
+        },
+        size: {
+            $type: "dimension",
+            logo: { $value: "40px" },
+            column: { $value: "448px" },
+            prose: { $value: "512px" },
+            full: { $value: "100%" },
+            screen: { $value: "100vh" },
+        },
         radius: {
             $type: "dimension",
             none: { $value: "0px" },
@@ -75,6 +87,7 @@ export let {
             lg: { $value: "18px" },
             xl: { $value: "20px" },
             xxl: { $value: "28px" },
+            xxxl: { $value: "36px" },
         },
         lineHeight: {
             $type: "number",
@@ -113,7 +126,12 @@ export let {
                 $value: { color: "rgb(0 0 0 / 0.10)", offsetX: "0px", offsetY: "1px", blur: "3px" },
             },
             md: {
-                $value: { color: "rgb(0 0 0 / 0.12)", offsetX: "0px", offsetY: "4px", blur: "10px" },
+                $value: {
+                    color: "rgb(0 0 0 / 0.12)",
+                    offsetX: "0px",
+                    offsetY: "4px",
+                    blur: "10px",
+                },
             },
             lg: {
                 $value: {
@@ -131,6 +149,18 @@ export let {
                     blur: "50px",
                 },
             },
+            // `inset: true` moves the shadow inside the border box. The color
+            // is an alias, so the dark override below flips it through the
+            // cascade instead of restating the whole shadow.
+            inset: {
+                $value: {
+                    color: "{colors.highlight.inset}",
+                    offsetX: "0px",
+                    offsetY: "1px",
+                    blur: "0px",
+                    inset: true,
+                },
+            },
         },
         surface: {
             $type: "color",
@@ -146,8 +176,11 @@ export let {
                 primary: { $value: "#111827" },
                 secondary: { $value: "#374151" },
                 muted: { $value: "#6b7280" },
+                warning: { $value: "#ef4444" },
                 link: { $value: "#2563eb" },
+                linkHover: { $value: "#1e40af" },
             },
+            highlight: { inset: { $value: "rgb(255 255 255 / 0.7)" } },
             border: {
                 subtle: { $value: "#e5e7eb" },
                 default: { $value: "#d1d5db" },
@@ -195,8 +228,11 @@ export let {
                         primary: { $value: "#f3f4f6" },
                         secondary: { $value: "#d1d5db" },
                         muted: { $value: "#9ca3af" },
+                        warning: { $value: "#f87171" },
                         link: { $value: "#60a5fa" },
+                        linkHover: { $value: "#93c5fd" },
                     },
+                    highlight: { inset: { $value: "rgb(255 255 255 / 0.04)" } },
                     border: {
                         subtle: { $value: "#1f2937" },
                         default: { $value: "#374151" },
