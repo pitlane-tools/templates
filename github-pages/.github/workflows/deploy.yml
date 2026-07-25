@@ -27,11 +27,17 @@ jobs:
               with:
                   cache: true
 
+            # Remix installs from a preview build prepared out of a git
+            # checkout whose own lockfile is intentionally out of date; keep
+            # this app's install frozen via the CLI flag, but stop CI's
+            # frozen-lockfile default from leaking into that nested install.
             - run: vp install --frozen-lockfile
+              env:
+                  npm_config_frozen_lockfile: "false"
 
             # Project pages live under /<repo>/; delete BASE_PATH for user/org
             # pages (username.github.io) or a custom domain. The build task
-            # also stages sw.js and the SPA 404 fallback into dist/client.
+            # also stages the SPA 404 fallback into dist.
             - run: vp run build
               env:
                   BASE_PATH: /${{ github.event.repository.name }}/
@@ -40,7 +46,7 @@ jobs:
 
             - uses: actions/upload-pages-artifact@v3
               with:
-                  path: dist/client
+                  path: dist
 
             - id: deployment
               uses: actions/deploy-pages@v4

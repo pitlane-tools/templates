@@ -1,10 +1,11 @@
-import { theme } from "#app/components/Theme.tsx";
-import { clientEntry, css, on } from "remix/ui";
+import { type Handle, css, on } from "remix/ui";
 import { inputStyle } from "remix/ui/combobox";
+
+import { theme } from "#app/components/Theme.tsx";
 
 const MAX_LENGTH = 280;
 
-export let CharacterCounter = clientEntry(import.meta.url, handle => {
+export function CharacterCounter(handle: Handle) {
     let count = 0;
 
     return () => {
@@ -58,4 +59,4 @@ export let CharacterCounter = clientEntry(import.meta.url, handle => {
             </div>
         );
     };
-});
+}

@@ -10,8 +10,8 @@
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"],
-        "types": ["@types/node", "vite/client", "@pitlane/dev/assets"]
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "types": ["@types/node", "vite/client"]
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["dist"]

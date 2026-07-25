@@ -1,11 +1,12 @@
+import { css, type Handle } from "remix/ui";
+import { button } from "remix/ui/button";
+import { inputStyle } from "remix/ui/combobox";
+
 import type { GuestBookEntry } from "#app/data/schemas.ts";
 
 import { CharacterCounter } from "#app/components/CharacterCounter.tsx";
 import { theme } from "#app/components/Theme.tsx";
 import { routes } from "#app/routes.ts";
-import { css, type Handle } from "remix/ui";
-import { button } from "remix/ui/button";
-import { inputStyle } from "remix/ui/combobox";
 
 export interface WelcomeProps {
     entries: GuestBookEntry[];
@@ -43,12 +44,12 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                     <picture>
                         <source
                             media="(prefers-color-scheme: dark)"
-                            srcSet="/remix-3-logo-dark.svg"
+                            srcSet={import.meta.env.BASE_URL + "remix-3-logo-dark.svg"}
                         />
                         <img
                             alt="Remix 3"
                             mix={[css({ height: "2.5rem" })]}
-                            src="/remix-3-logo-light.svg"
+                            src={import.meta.env.BASE_URL + "remix-3-logo-light.svg"}
                         />
                     </picture>
                     <h1
@@ -158,8 +159,11 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         )}
                     </div>
 
+                    {/* Keyed by entry count so each submission mounts a fresh,
+                        empty form instead of morphing the previous values. */}
                     <form
                         action={routes.guestBook.action.href()}
+                        key={`sign-form-${entries.length}`}
                         method={routes.guestBook.action.method}
                         mix={[
                             css({
@@ -184,7 +188,6 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         <CharacterCounter />
                         <button
                             mix={[button({ tone: "primary" }), css({ alignSelf: "flex-end" })]}
-                            rmx-target="welcome"
                             type="submit"
                         >
                             Sign
@@ -208,7 +211,6 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
         return (
             <a
                 href={href}
-                target="_blank"
                 mix={[
                     css({
                         color: theme.colors.text.link,
@@ -219,6 +221,7 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
                         },
                     }),
                 ]}
+                target="_blank"
             >
                 {label}
             </a>

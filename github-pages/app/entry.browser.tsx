@@ -1,87 +1,28 @@
-import { navigate, run } from "remix/ui";
+import { createRoot } from "remix/ui";
+import { SPA } from "remix/ui/spa";
 
-// In dev the worker is served as a transformed module straight from source;
-// the production build copies the compiled worker to <base>/sw.js.
-let workerUrl = import.meta.env.DEV
-    ? "/app/entry.worker.ts"
-    : import.meta.env.BASE_URL + "sw.js";
+import { Theme } from "#app/components/Theme.tsx";
+import { router } from "#app/router.tsx";
+import "#app/styles/preflight.css";
 
-if (!navigator.serviceWorker.controller) {
-    await navigator.serviceWorker.register(workerUrl, {
-        type: "module",
-        scope: import.meta.env.BASE_URL,
-    });
-    location.reload();
-} else {
-    // Must be registered before `run` so `event.preventDefault` works properly
-    //
-    // - Form submissions: GET via soft-navigate, utilizing the button[rmx-target] attribute
-    // - Form submissions: POST via fetch, then soft-navigate to the redirect URL
-    navigation.addEventListener("navigate", async event => {
-        if (!event.canIntercept) return;
-
-        // triggered programatically, handled by built-in listener
-        if (!event.sourceElement) return;
-        // anchors handled by built-in listener
-        if (event.sourceElement.closest("a, area")) return;
-
-        // sourceElement is <button type="submit"> inside of form submissions
-        let target = event.sourceElement.getAttribute("rmx-target") ?? undefined;
-        let src = event.sourceElement.getAttribute("rmx-src") ?? undefined;
-        let resetScroll = event.sourceElement.hasAttribute("rmx-reset-scroll") ?? undefined;
-
-        // Form POST submission
-        if (event.formData) {
-            event.intercept({
-                focusReset: "manual",
-                async handler() {
-                    let response = await fetch(event.destination.url, {
-                        method: "POST",
-                        body: event.formData,
-                        signal: event.signal,
-                    });
-
-                    await navigate(response.url, { target, src, resetScroll });
-
-                    // FIXME:
-                    // Workaround: Remix's Frame morphing preserves form input
-                    // values and clientEntry state when the response comes from
-                    // a service worker. Reset forms and re-trigger input handlers
-                    // so clientEntry components (like CharacterCounter) recalculate.
-                    for (let form of document.querySelectorAll("form")) {
-                        form.reset();
-                        for (let element of form.querySelectorAll("textarea, input")) {
-                            element.dispatchEvent(new Event("input", { bubbles: true }));
-                        }
-                    }
-                },
-            });
-            return;
-        }
-
-        // Form GET submission
-        event.preventDefault();
-        await navigate(event.destination.url, { target, src, resetScroll });
-    });
-
-    run({
-        async loadModule(moduleUrl, exportName) {
-            let mod = await import(/* @vite-ignore */ moduleUrl);
-            let exported = mod[exportName];
-
-            if (typeof exported !== "function") {
-                throw new TypeError(
-                    `Expected export '${exportName}' from '${moduleUrl}' to be a function`,
-                );
-            }
-
-            return exported;
+// The whole app runs in the browser: the SPA component intercepts
+// same-origin navigations and form submissions, dispatches them through the
+// fetch router, and renders whatever node comes back. Frames resolve through
+// the same router — the in-memory Request carries the frame name as the
+// x-remix-target header, and handlers answer with the matching fragment.
+let root = createRoot(document.getElementById("app")!, {
+    frameInit: {
+        resolveFrame(src, signal, target) {
+            let headers = new Headers();
+            if (target) headers.set("x-remix-target", target);
+            return router.fetch(src, { headers, signal });
         },
-        async resolveFrame(src, signal, target) {
-            let headers = new Headers({ accept: "text/html" });
-            if (target) headers.set("x-remix-frame", target);
-            let response = await fetch(src, { headers, signal });
-            return response.body ?? (await response.text());
-        },
-    });
-}
+    },
+});
+
+root.render(
+    <>
+        <Theme />
+        <SPA fallback={null} router={router} />
+    </>,
+);
