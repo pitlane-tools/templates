@@ -27,9 +27,11 @@ jobs:
 
             - run: pnpm install --no-frozen-lockfile
               env:
-                  # Template postinstalls (workerd, remix) are allowed by the
-                  # root package.json onlyBuiltDependencies list.
-                  CI: "true"
+                  # The github-pages template installs remix from a preview
+                  # build prepared out of a git checkout whose own lockfile is
+                  # intentionally out of date; stop CI's frozen-lockfile default
+                  # from leaking into that nested install.
+                  npm_config_frozen_lockfile: "false"
 
             - run: pnpm --filter ./${{ matrix.template }} exec vp build
 
@@ -88,6 +90,10 @@ jobs:
                   node-version: 24
 
             - run: pnpm install --no-frozen-lockfile
+              env:
+                  # See the node-templates install step: the nested prepare
+                  # install for git-hosted remix cannot run frozen.
+                  npm_config_frozen_lockfile: "false"
 
             - run: node db/migrate.ts
               working-directory: vercel

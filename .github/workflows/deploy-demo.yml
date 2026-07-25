@@ -62,6 +62,10 @@ jobs:
 
             - run: pnpm install --no-frozen-lockfile
               if: steps.published.outputs.ok == 'true'
+              env:
+                  # See ci.yml: the nested prepare install for the git-hosted
+                  # remix package cannot run frozen.
+                  npm_config_frozen_lockfile: "false"
 
             - name: Point wrangler at the demo database
               if: steps.published.outputs.ok == 'true'
