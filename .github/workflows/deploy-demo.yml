@@ -1,7 +1,7 @@
 # .github/workflows/deploy-demo.yml — keeps the live Cloudflare demo current.
 #
 # Deploys the cloudflare template to the canonical demo Worker
-# (https://pitlane-cloudflare.mark-malstrom.workers.dev) whenever the template
+# (https://guestbook.pitlane.tools) whenever the template
 # changes, on demand, and on a weekly schedule so floating dependency ranges
 # (@pitlane/dev, remix) are picked up without a commit.
 #
@@ -86,7 +86,7 @@ jobs:
             - name: Smoke test the deployment
               if: steps.published.outputs.ok == 'true'
               run: |
-                  URL="https://pitlane-cloudflare.mark-malstrom.workers.dev"
+                  URL="https://guestbook.pitlane.tools"
                   STATUS=$(curl -sm 20 -o /dev/null -w "%{http_code}" "$URL/")
                   echo "GET / → $STATUS"
                   test "$STATUS" = "200"

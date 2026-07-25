@@ -10,7 +10,7 @@ Scaffold with [giget](https://github.com/unjs/giget) — pick a template directo
 npx giget github:pitlane-tools/templates/<template> my-app
 ```
 
-The `cloudflare` template runs live at [pitlane-cloudflare.mark-malstrom.workers.dev](https://pitlane-cloudflare.mark-malstrom.workers.dev) — sign the guest book.
+The `cloudflare` template runs live at [guestbook.pitlane.tools](https://guestbook.pitlane.tools) — sign the guest book.
 
 ## Templates
 
@@ -42,7 +42,7 @@ vp install
 vp run --filter ./railway-node build   # build any one template
 ```
 
-CI builds every template against `@pitlane/dev` from npm on pushes and pull requests, and [deploy-demo](./.github/workflows/deploy-demo.yml) redeploys the [live Cloudflare demo](https://pitlane-cloudflare.mark-malstrom.workers.dev) whenever the `cloudflare` template changes (plus weekly, to pick up new dependency releases).
+CI builds every template against `@pitlane/dev` from npm on pushes and pull requests, and [deploy-demo](./.github/workflows/deploy-demo.yml) redeploys the [live Cloudflare demo](https://guestbook.pitlane.tools) whenever the `cloudflare` template changes (plus weekly, to pick up new dependency releases).
 
 ## License
 
