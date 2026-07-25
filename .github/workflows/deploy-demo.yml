@@ -1,9 +1,8 @@
 # .github/workflows/deploy-demo.yml — keeps the live Cloudflare demo current.
 #
 # Deploys the cloudflare template to the canonical demo Worker
-# (https://guestbook.pitlane.tools) whenever the template
-# changes, on demand, and on a weekly schedule so floating dependency ranges
-# (@pitlane/dev, remix) are picked up without a commit.
+# (https://guestbook.pitlane.tools) whenever the template changes, and on
+# demand.
 #
 # Wiring (already set on this repository):
 #   secret CLOUDFLARE_API_TOKEN          — Workers + D1 edit permissions
@@ -21,8 +20,6 @@ on:
             - cloudflare/**
             - .github/workflows/deploy-demo.yml
     workflow_dispatch:
-    schedule:
-        - cron: "0 6 * * 1"
 
 permissions:
     contents: read
