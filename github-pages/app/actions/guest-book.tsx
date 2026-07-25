@@ -20,11 +20,14 @@ export default createController(routes.guestBook, {
             let payload = s.parse(CreateGuestBookEntry, formData);
             await storage.set(GuestBook, payload);
 
-            // A frame only re-resolves when its src changes, so stamp the
-            // submission time into the src. The old content stays visible
-            // while the fresh guest book loads — no fallback flash.
+            // Node-style POST/redirect/GET: the "redirect" is the shell
+            // rendered fresh. A frame only re-resolves when its src changes,
+            // so the src names the state it shows — the guest book at N
+            // entries — like a hashed asset URL names its content. The old
+            // content stays visible while the fresh fragment loads.
+            let entries = await storage.getMany(GuestBook);
             let src = new URL(url);
-            src.searchParams.set("submitted", Date.now().toString());
+            src.searchParams.set("entries", String(entries.length));
             return <Frame name="welcome" src={src.toString()} />;
         },
     },
