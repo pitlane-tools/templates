@@ -13,7 +13,7 @@
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
-        "oxlint-tsgolint": "^0.22.1",
+        "oxlint-tsgolint": "^7.0.2001",
         "typescript": "^7.0.2",
         "vite": "npm:@voidzero-dev/vite-plus-core@latest",
         "vite-plugin-devtools-json": "^1.0.0",

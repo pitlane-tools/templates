@@ -2,13 +2,11 @@ import { type Middleware } from "remix/router";
 
 import { AppStorage } from "#app/data/app-storage.ts";
 
-export type StorageMiddleware = Middleware<{
+export function loadStorage(): Middleware<{
     key: typeof AppStorage;
     value: AppStorage;
     property: "storage";
-}>;
-
-export function loadStorage(): StorageMiddleware {
+}> {
     let storage = new AppStorage();
 
     return (context, next) => {

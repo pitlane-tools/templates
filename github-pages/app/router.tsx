@@ -1,22 +1,14 @@
 import type { RemixNode } from "remix/ui";
 
 import { formData } from "remix/middleware/form-data";
-import { type Middleware, type MiddlewareContext, createRouter } from "remix/router";
-
-import type { StorageMiddleware } from "#app/middleware/storage.ts";
+import { createRouter, MiddlewareContext } from "remix/router";
 
 import guestBook from "#app/actions/guest-book.tsx";
 import { NotFound } from "#app/components/NotFound.tsx";
 import { loadStorage } from "#app/middleware/storage.ts";
 import { routes } from "#app/routes.ts";
 
-type FormDataMiddleware = Middleware<{
-    key: typeof FormData;
-    value: FormData;
-    property: "formData";
-}>;
-
-type AppContext = MiddlewareContext<[FormDataMiddleware, StorageMiddleware]>;
+type AppContext = MiddlewareContext<[ReturnType<typeof formData>, ReturnType<typeof loadStorage>]>;
 
 declare module "remix/router" {
     interface RouterTypes {
