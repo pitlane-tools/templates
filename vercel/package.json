@@ -6,6 +6,7 @@
         "#app/*": "./app/*"
     },
     "dependencies": {
+        "@pitlane/theme": "^0.1.0",
         "pg": "^8.22.0",
         "remix": "3.0.0-beta.5"
     },
