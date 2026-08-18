@@ -1,8 +1,8 @@
 {
     "nodeModulesDir": "auto",
     "imports": {
-        "@pitlane/dev": "npm:@pitlane/dev@^0.1.0",
-        "remix": "npm:remix@3.0.0-beta.5",
+        "@pitlane/dev": "npm:@pitlane/dev@^0.2.0",
+        "remix": "npm:remix@3.0.0-beta.10",
         "vite": "npm:vite@^8.1.5"
     },
     "tasks": {

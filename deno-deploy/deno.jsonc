@@ -3,9 +3,9 @@
     "imports": {
         "@electric-sql/pglite": "npm:@electric-sql/pglite@^0.5.4",
         "@electric-sql/pglite-socket": "npm:@electric-sql/pglite-socket@^0.2.7",
-        "@pitlane/dev": "npm:@pitlane/dev@^0.1.0",
+        "@pitlane/dev": "npm:@pitlane/dev@^0.2.0",
         "pg": "npm:pg@^8.22.0",
-        "remix": "npm:remix@3.0.0-beta.5",
+        "remix": "npm:remix@3.0.0-beta.10",
         "vite": "npm:vite@^8.1.5"
     },
     "tasks": {
