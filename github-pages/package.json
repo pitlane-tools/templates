@@ -7,7 +7,7 @@
     },
     "dependencies": {
         "idb-keyval": "^6.2.2",
-        "remix": "github:remix-run/remix#preview/pr-11629&path:packages/remix"
+        "remix": "github:remix-run/remix#preview/pr-11687&path:packages/remix"
     },
     "devDependencies": {
         "@types/node": "^25.5.0",
