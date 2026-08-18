@@ -1,4 +1,5 @@
 import * as s from "remix/data-schema";
+import { redirect } from "remix/response/redirect";
 import { createController } from "remix/router";
 
 import { Welcome } from "#app/components/Welcome.tsx";
@@ -11,12 +12,10 @@ export default createController(routes.guestBook, {
             let entries = await storage.getMany(GuestBook);
             return render(<Welcome entries={entries} />);
         },
-        async action({ render, storage, formData }) {
+        async action({ storage, formData }) {
             let payload = s.parse(CreateGuestBookEntry, formData);
             await storage.set(GuestBook, payload);
-
-            let entries = await storage.getMany(GuestBook);
-            return render(<Welcome entries={entries} />);
+            return redirect(routes.guestBook.index.href());
         },
     },
 });
