@@ -1,14 +1,14 @@
 # Pitlane — GitHub Pages Template
 
-A [Remix 3](https://remix.run) guest book starter that runs entirely in the browser: the Remix fetch router returns UI nodes directly — no server, no service worker, no HTTP — and the `SPA` component from `remix/ui/spa` renders them, intercepting navigations and form submissions. Frames resolve through the same in-memory router, and data persists locally in IndexedDB via [`idb-keyval`](https://github.com/jakearchibald/idb-keyval). Once built, it deploys as pure static files.
+A [Remix 3](https://remix.run) guest book starter that runs entirely in the browser: an ordinary Remix fetch router answers requests with UI nodes through the `render()` middleware from `remix/spa`, and `run()` connects it to the document — no server, no service worker, no HTTP. Navigations and form submissions dispatch through the same in-memory router, and data persists locally in IndexedDB via [`idb-keyval`](https://github.com/jakearchibald/idb-keyval). Once built, it deploys as pure static files.
 
 | Runtime       | Package manager | Database                 | Deploys to                               |
 | ------------- | --------------- | ------------------------ | ---------------------------------------- |
 | Browser (SPA) | pnpm            | IndexedDB (`idb-keyval`) | [GitHub Pages](https://pages.github.com) |
 
 > [!NOTE]
-> This template tracks a preview build of [remix-run/remix#11629](https://github.com/remix-run/remix/pull/11629)
-> (SPA routing with custom fetch router outputs). The `remix` dependency installs
+> This template tracks a preview build of [remix-run/remix#11687](https://github.com/remix-run/remix/pull/11687)
+> (client-rendered SPA routing). The `remix` dependency installs
 > straight from that PR's preview branch, and `pnpm-workspace.yaml` pins the
 > matching `allowBuilds` keys — pnpm only matches git-hosted packages by exact
 > commit, so regenerate those keys whenever the preview commit moves.
@@ -44,24 +44,30 @@ vp dev     # start the dev server
 
 ## Architecture
 
-The router declares `RouterTypes.output = RemixNode`, so handlers return JSX
-instead of Responses ([app/router.tsx](./app/router.tsx)). The browser entry
-([app/entry.browser.tsx](./app/entry.browser.tsx)) renders an `SPA` component
-that dispatches every same-origin navigation and form submission through the
-router — POST submissions arrive as an in-memory `Request` complete with
-`FormData`.
+The router is an ordinary Remix fetch router. The `render()` middleware from
+`remix/spa` gives every handler a `context.render()` that answers with a UI
+node instead of a body, and the transform passed to it wraps each route in the
+app's `<Theme />` ([app/router.tsx](./app/router.tsx)). The browser entry
+([app/entry.browser.tsx](./app/entry.browser.tsx)) calls `run(router)`, which
+dispatches the initial URL and every same-origin navigation and form
+submission through that router — POST submissions arrive as an in-memory
+`Request` complete with `FormData`.
 
-Frames work the same way they do on a server: the guest book page is a
-`<Frame name="welcome">` shell, and the frame's `src` resolves through the
-router with the frame name in the `x-remix-target` header
-([app/actions/guest-book.tsx](./app/actions/guest-book.tsx)). After a
-submission the action stamps a freshness token into the frame `src`, which is
-what tells the frame to re-resolve — old content stays visible until the new
-fragment lands.
+The guest book is a single form route
+([app/actions/guest-book.tsx](./app/actions/guest-book.tsx)): `index` renders
+the entry list, `action` writes the new entry and redirects back to `index`,
+which `run()` follows in memory before re-rendering. Unknown paths fall through
+to the router's `defaultHandler`, which renders the 404 page.
 
 Guest book entries live in the visitor's own browser through `AppStorage`
 ([app/data/app-storage.ts](./app/data/app-storage.ts)), a small
 schema-validated KV layer over IndexedDB.
+
+`vite.config.ts` runs [`@pitlane/dev`](https://pitlane.tools/package/dev/)'s
+`remix()` plugin in SPA mode (`server: false`). There is no server to build here,
+so the plugin contributes one thing: component hot module replacement. Editing
+a component swaps it in place and keeps live state — a half-typed guest book
+entry survives the edit instead of being wiped by a page reload.
 
 ## Commands
 

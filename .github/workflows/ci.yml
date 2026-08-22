@@ -25,7 +25,16 @@ jobs:
               with:
                   node-version: 24
 
-            - run: pnpm install --no-frozen-lockfile
+            # pnpm/action-setup installs pnpm under
+            # ~/setup-pnpm/node_modules/.bin and derives its store from there,
+            # so the default store path contains "node_modules". The
+            # github-pages template's git-hosted remix preview is unpacked into
+            # that store and prepared by running its own
+            # scripts/postinstall.ts, and Node refuses to strip types from any
+            # .ts file under a node_modules directory — every job died on
+            # ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING. It has to be the CLI
+            # flag: pnpm 11 ignores npm_config_store_dir and PNPM_STORE_DIR.
+            - run: pnpm install --no-frozen-lockfile --store-dir "$RUNNER_TEMP/pnpm-store"
               env:
                   # The github-pages template installs remix from a preview
                   # build prepared out of a git checkout whose own lockfile is
@@ -89,10 +98,11 @@ jobs:
               with:
                   node-version: 24
 
-            - run: pnpm install --no-frozen-lockfile
+            # See the node-templates install step for both settings: the nested
+            # prepare install for git-hosted remix cannot run frozen, and its
+            # postinstall cannot run from a store under node_modules.
+            - run: pnpm install --no-frozen-lockfile --store-dir "$RUNNER_TEMP/pnpm-store"
               env:
-                  # See the node-templates install step: the nested prepare
-                  # install for git-hosted remix cannot run frozen.
                   npm_config_frozen_lockfile: "false"
 
             - run: node db/migrate.ts

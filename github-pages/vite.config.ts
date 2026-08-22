@@ -1,3 +1,4 @@
+import { remix } from "@pitlane/dev";
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig } from "vite-plus";
 
@@ -5,7 +6,9 @@ export default defineConfig({
     // For GitHub project pages set BASE_PATH=/<repo>/ (the deploy workflow does
     // this automatically); user/org pages and custom domains use "/".
     base: process.env.BASE_PATH || "/",
-    plugins: [devtoolsJson()],
+    // server: false — this app renders entirely in the browser through
+    // remix/spa, so the plugin contributes component HMR and nothing else.
+    plugins: [remix({ server: false }), devtoolsJson()],
     server: {
         port: 1612,
     },
