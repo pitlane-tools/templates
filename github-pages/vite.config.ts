@@ -6,9 +6,9 @@ export default defineConfig({
     // For GitHub project pages set BASE_PATH=/<repo>/ (the deploy workflow does
     // this automatically); user/org pages and custom domains use "/".
     base: process.env.BASE_PATH || "/",
-    // ssr: false — this app renders entirely in the browser through
+    // server: false — this app renders entirely in the browser through
     // remix/spa, so the plugin contributes component HMR and nothing else.
-    plugins: [remix({ ssr: false }), devtoolsJson()],
+    plugins: [remix({ server: false }), devtoolsJson()],
     server: {
         port: 1612,
     },
