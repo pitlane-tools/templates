@@ -204,7 +204,6 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
         return (
             <a
                 href={href}
-                target="_blank"
                 mix={[
                     css({
                         color: theme.colors.text.link,
@@ -215,6 +214,7 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
                         },
                     }),
                 ]}
+                target="_blank"
             >
                 {label}
             </a>
