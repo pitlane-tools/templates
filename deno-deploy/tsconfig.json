@@ -9,7 +9,7 @@
         "allowImportingTsExtensions": true,
         "strict": true,
         "skipLibCheck": true,
-        "types": ["vite/client", "@pitlane/dev/assets"]
+        "types": ["vite/client", "@pitlane/dev/assets", "node", "deno"]
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["dist"]

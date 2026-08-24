@@ -17,6 +17,13 @@
         "check": "deno task build && deno check db/migrate.ts main.ts",
         "fmt": "deno run -A npm:oxfmt@^0.47.0",
         "lint": "deno run -A npm:oxlint@^1.62.0",
+        // Lint and type-check tooling, plus the ambient type packages the
+        // type-aware pass reads. `deno cache` materialises them into
+        // node_modules and records them in deno.lock without adding anything
+        // to `imports`, so none of it is importable from application code.
+        // The committed lockfile is what makes `deno install` restore them on
+        // a fresh clone; re-run this task when bumping any of these.
+        "tooling": "deno cache npm:@types/node npm:@types/pg npm:@types/deno npm:eslint-plugin-perfectionist",
         "db:migrate": "deno -A db/migrate.ts",
         "db:reset": "rm -rf .data/postgres",
         "start": "deno run -A main.ts",

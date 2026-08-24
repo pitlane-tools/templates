@@ -1,15 +1,23 @@
 {
-    // No `typeAware`/`typeCheck` here, unlike the node templates. Deno supplies
-    // its own type environment — `Deno`, its npm: specifiers, its node compat —
-    // and oxlint reads a tsconfig instead, so enabling them reports a dozen
-    // phantom errors about `Deno` and `process` being undefined. `deno check`
-    // in the `check` task is what type-checks this template.
-    //
-    // No `jsPlugins` either. They resolve from node_modules, and a Deno import
-    // map has no devDependencies to put a lint plugin in without also making it
-    // importable from application code.
+    // Type-aware linting works here the same as in the node templates. It reads
+    // tsconfig.json, not Deno's own type environment, so the ambient packages
+    // it needs — @types/node, @types/pg, @types/deno — are materialised by
+    // `deno task tooling` and listed in tsconfig's `types`. `deno check` stays
+    // the authority on Deno APIs; this pass only has to understand them well
+    // enough to type the surrounding code.
+    "options": {
+        "typeAware": true,
+        "typeCheck": true,
+    },
     "plugins": ["import"],
+    // Resolved from node_modules relative to this file. `deno task tooling`
+    // puts it there without an `imports` entry, so it never becomes importable
+    // from application code the way `deno add` would make it.
+    "jsPlugins": ["eslint-plugin-perfectionist"],
     "rules": {
+        // Matches the node templates.
+        "typescript/no-floating-promises": "allow",
+        "perfectionist/sort-jsx-props": "warn",
         // Deno resolves modules by explicit path, so a missing extension is a
         // runtime failure here rather than a matter of taste.
         "import/extensions": [
@@ -26,11 +34,11 @@
                 "tsx": "always",
             },
         ],
-        // The templates declare with `let` throughout.
-        "eslint/prefer-const": "off",
         // `../entry.browser.ts?assets=client` is a virtual module that
         // @pitlane/dev materialises during the build. Its default export does
         // not exist in the source file, so no static resolver can see it.
         "import/default": "off",
+        // The templates declare with `let` throughout.
+        "eslint/prefer-const": "off",
     },
 }

@@ -3,7 +3,7 @@
     "imports": {
         "@pitlane/dev": "npm:@pitlane/dev@^0.4.0",
         "remix": "npm:remix@3.0.0-beta.10",
-        "vite": "npm:vite@^8.1.5"
+        "vite": "npm:vite@^8.1.5",
     },
     "tasks": {
         "dev": "deno task db:migrate && deno run -A --env-file=.env npm:vite@^8.1.5 dev --host",
@@ -12,13 +12,20 @@
         "check": "deno check db/migrate.ts",
         "fmt": "deno run -A npm:oxfmt@^0.47.0",
         "lint": "deno run -A npm:oxlint@^1.62.0",
+        // Lint and type-check tooling, plus the ambient type packages the
+        // type-aware pass reads. `deno cache` materialises them into
+        // node_modules and records them in deno.lock without adding anything
+        // to `imports`, so none of it is importable from application code.
+        // The committed lockfile is what makes `deno install` restore them on
+        // a fresh clone; re-run this task when bumping any of these.
+        "tooling": "deno cache npm:@types/node npm:eslint-plugin-perfectionist",
         "db:migrate": "deno -A --env-file=.env db/migrate.ts",
         "db:reset": "rm -rf db/data.db",
-        "start": "deno serve -A --port=${PORT:-3000} dist/ssr/index.js"
+        "start": "deno serve -A --port=${PORT:-3000} dist/ssr/index.js",
     },
     "compilerOptions": {
         "jsx": "react-jsx",
-        "jsxImportSource": "remix/ui"
+        "jsxImportSource": "remix/ui",
     },
     // oxfmt formats this template (`deno task fmt`), the same as every other
     // template here. `deno fmt` is switched off rather than left to fight it:
@@ -26,6 +33,6 @@
     // byte-identical to their node counterparts, and it reindents the SVG
     // logos under public/, which are assets rather than source.
     "fmt": {
-        "exclude": ["."]
-    }
+        "exclude": ["."],
+    },
 }

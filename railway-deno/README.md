@@ -1,6 +1,6 @@
 # Pitlane — Railway Template (Deno)
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.json` holds every dependency and task, there is no `package.json` — with [`node:sqlite`](https://docs.deno.com/api/node/sqlite/) (Deno implements the Node API), containerized for [Railway](https://railway.com).
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — with [`node:sqlite`](https://docs.deno.com/api/node/sqlite/) (Deno implements the Node API), containerized for [Railway](https://railway.com).
 
 | Runtime | Package manager | Database      | Deploys to                                 |
 | ------- | --------------- | ------------- | ------------------------------------------ |
@@ -24,7 +24,7 @@ curl -fsSL https://deno.land/install.sh | sh # or: brew install deno
 ## Getting Started
 
 ```sh
-deno install --allow-scripts # install dependencies from deno.json
+deno install --allow-scripts # install dependencies from deno.jsonc
 deno task dev                # migrate the SQLite database, then start Vite
 ```
 

@@ -1,6 +1,6 @@
 # Pitlane — Deno Deploy Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.json` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
 
 | Runtime | Package manager | Database   | Deploys to                             |
 | ------- | --------------- | ---------- | -------------------------------------- |
@@ -24,7 +24,7 @@ curl -fsSL https://deno.land/install.sh | sh # or: brew install deno
 ## Getting Started
 
 ```sh
-deno install --allow-scripts # install dependencies from deno.json
+deno install --allow-scripts # install dependencies from deno.jsonc
 deno task dev                # start PGlite + migrate + dev server
 ```
 
@@ -83,7 +83,7 @@ Follow the [Deno Deploy guide](https://pitlane.tools/deploy/deno-deploy). Short 
    `deno deploy --prod`.
 
 The upload respects `.gitignore`, which would normally drop the built `dist/` — the
-`"deploy": { "exclude": ["!dist"] }` entry in [deno.json](./deno.json) un-excludes it
+`"deploy": { "exclude": ["!dist"] }` entry in [deno.jsonc](./deno.jsonc) un-excludes it
 so the CI-built output ships.
 
 To deploy from your machine instead:

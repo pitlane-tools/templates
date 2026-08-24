@@ -30,7 +30,7 @@ Each template ships a GitHub Actions deploy workflow following the [Pitlane depl
 ## Conventions
 
 - **One app, many platforms.** The guest book (schema-validated form writes, streamed HTML, a hydrated island) is identical everywhere; only the database middleware and the deploy surface change.
-- **Vite+ canonical.** Templates use [Vite+](https://viteplus.dev) (`vp`) for dev, build, tasks, formatting, and linting — except the two Deno templates, which are Deno-native (`deno.json` holds dependencies and tasks; no `package.json`).
+- **Vite+ canonical.** Templates use [Vite+](https://viteplus.dev) (`vp`) for dev, build, tasks, formatting, and linting — except the two Deno templates, which are Deno-native (`deno.jsonc` holds dependencies and tasks; no `package.json`).
 - **PostgreSQL templates develop against PGlite.** `netlify`, `vercel`, and `deno-deploy` start a project-local [PGlite](https://pglite.dev) socket server on `vp dev` / `deno task dev` and inject `DATABASE_URL` — no Docker, no local Postgres — while production always points at a real PostgreSQL server through the same migrations and client.
 
 ## Development
