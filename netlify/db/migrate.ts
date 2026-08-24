@@ -1,11 +1,12 @@
-import { Env } from "#app/data/schemas.ts";
-import { parseEnv } from "#app/utils/parse-env.ts";
 import path from "node:path";
 import { Pool } from "pg";
 import { assert } from "remix/assert";
 import * as s from "remix/data-schema";
 import { loadMigrations } from "remix/data-table/migrations/node";
 import { createPostgresDatabase } from "remix/data-table/postgres";
+
+import { Env } from "#app/data/schemas.ts";
+import { parseEnv } from "#app/utils/parse-env.ts";
 
 const { NETLIFY_DATABASE_URL, DATABASE_URL } = parseEnv(Env);
 let connectionString = NETLIFY_DATABASE_URL ?? DATABASE_URL;

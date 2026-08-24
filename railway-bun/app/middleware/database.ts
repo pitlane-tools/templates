@@ -1,9 +1,10 @@
-import { Env } from "#app/data/schemas.ts";
-import { parseEnv } from "#app/utils/parse-env.ts";
 import { Database as Sqlite } from "bun:sqlite";
 import { Database } from "remix/data-table";
 import { createSqliteDatabase } from "remix/data-table/sqlite";
 import { type Middleware } from "remix/router";
+
+import { Env } from "#app/data/schemas.ts";
+import { parseEnv } from "#app/utils/parse-env.ts";
 
 const { DATABASE_URL } = parseEnv(Env);
 

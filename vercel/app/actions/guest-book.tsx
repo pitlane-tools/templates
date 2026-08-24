@@ -1,10 +1,11 @@
+import * as s from "remix/data-schema";
+import { redirect } from "remix/response/redirect";
+import { createController } from "remix/router";
+
 import { Document } from "#app/components/Document.tsx";
 import { Welcome } from "#app/components/Welcome.tsx";
 import { CreateGuestBookEntry, GuestBook } from "#app/data/schemas.ts";
 import { routes } from "#app/routes.ts";
-import * as s from "remix/data-schema";
-import { redirect } from "remix/response/redirect";
-import { createController } from "remix/router";
 
 export default createController(routes.guestBook, {
     actions: {

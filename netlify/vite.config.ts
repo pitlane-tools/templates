@@ -29,11 +29,13 @@ export default defineConfig({
             // injects its DATABASE_URL, migrates, then runs the app dev server.
             // No Docker or local Postgres install needed.
             dev: {
-                command: 'mkdir -p .data && pglite-server --db=./.data/postgres --port=54329 --max-connections=10 --include-database-url --run "vpr dev:ready"',
+                command:
+                    'mkdir -p .data && pglite-server --db=./.data/postgres --port=54329 --max-connections=10 --include-database-url --run "vpr dev:ready"',
                 cache: false,
             },
             "dev:ephemeral": {
-                command: 'pglite-server --db=memory:// --port=54329 --max-connections=10 --include-database-url --run "vpr dev:ready"',
+                command:
+                    'pglite-server --db=memory:// --port=54329 --max-connections=10 --include-database-url --run "vpr dev:ready"',
                 cache: false,
             },
             "dev:ready": {

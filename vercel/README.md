@@ -2,8 +2,8 @@
 
 A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), packaged for [Vercel](https://vercel.com) by [Nitro](https://nitro.build), with PostgreSQL via [`remix/data-table`](https://remix.run).
 
-| Runtime                | Package manager | Database   | Deploys to                   |
-| ---------------------- | --------------- | ---------- | ---------------------------- |
+| Runtime                 | Package manager | Database   | Deploys to                   |
+| ----------------------- | --------------- | ---------- | ---------------------------- |
 | Node (Vercel Functions) | pnpm            | PostgreSQL | [Vercel](https://vercel.com) |
 
 ## Scaffold

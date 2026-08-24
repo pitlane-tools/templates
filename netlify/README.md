@@ -2,8 +2,8 @@
 
 A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running on [Netlify](https://www.netlify.com) — static client from the CDN, SSR through one Netlify Function — with PostgreSQL via [Netlify DB](https://docs.netlify.com/build/data-and-storage/netlify-db/).
 
-| Runtime                  | Package manager | Database   | Deploys to                             |
-| ------------------------ | --------------- | ---------- | -------------------------------------- |
+| Runtime                  | Package manager | Database   | Deploys to                         |
+| ------------------------ | --------------- | ---------- | ---------------------------------- |
 | Node (Netlify Functions) | pnpm            | PostgreSQL | [Netlify](https://www.netlify.com) |
 
 ## Scaffold

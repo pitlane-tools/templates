@@ -2,8 +2,8 @@
 
 A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running on Node.js with [`node:sqlite`](https://nodejs.org/api/sqlite.html), containerized for [Railway](https://railway.com).
 
-| Runtime | Package manager | Database      | Deploys to                            |
-| ------- | --------------- | ------------- | ------------------------------------- |
+| Runtime | Package manager | Database      | Deploys to                                 |
+| ------- | --------------- | ------------- | ------------------------------------------ |
 | Node.js | pnpm            | `node:sqlite` | [Railway](https://railway.com), via Docker |
 
 ## Scaffold
