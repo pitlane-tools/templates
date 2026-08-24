@@ -1,10 +1,11 @@
-import { Theme, theme } from "./Theme.tsx";
-import clientAssets from "../entry.browser.ts?assets=client";
-import serverAssets from "../entry.server.tsx?assets=ssr";
-import styles from "../styles/preflight.css?url";
 import { mergeAssets } from "@pitlane/dev/runtime";
 import { getContext } from "remix/middleware/async-context";
 import { Frame, css } from "remix/ui";
+
+import clientAssets from "../entry.browser.ts?assets=client";
+import serverAssets from "../entry.server.tsx?assets=ssr";
+import styles from "../styles/preflight.css?url";
+import { Theme, theme } from "./Theme.tsx";
 
 export function Document() {
     let { url } = getContext();

@@ -1,11 +1,12 @@
-import type { GuestBookEntry } from "../data/schemas.ts";
-
-import { CharacterCounter } from "./CharacterCounter.tsx";
-import { theme } from "./Theme.tsx";
-import { routes } from "../routes.ts";
 import { css, type Handle } from "remix/ui";
 import { button } from "remix/ui/button";
 import { inputStyle } from "remix/ui/combobox";
+
+import type { GuestBookEntry } from "../data/schemas.ts";
+
+import { routes } from "../routes.ts";
+import { CharacterCounter } from "./CharacterCounter.tsx";
+import { theme } from "./Theme.tsx";
 
 export interface WelcomeProps {
     entries: GuestBookEntry[];

@@ -1,9 +1,10 @@
-import { Env } from "../data/schemas.ts";
-import { parseEnv } from "../utils/parse-env.ts";
 import { Pool } from "pg";
 import { Database } from "remix/data-table";
 import { createPostgresDatabase } from "remix/data-table/postgres";
 import { type Middleware } from "remix/router";
+
+import { Env } from "../data/schemas.ts";
+import { parseEnv } from "../utils/parse-env.ts";
 
 const { DATABASE_URL } = parseEnv(Env);
 

@@ -6,7 +6,7 @@
         "@pitlane/dev": "npm:@pitlane/dev@^0.4.0",
         "pg": "npm:pg@^8.22.0",
         "remix": "npm:remix@3.0.0-beta.10",
-        "vite": "npm:vite@^8.1.5"
+        "vite": "npm:vite@^8.1.5",
     },
     "tasks": {
         "dev": "mkdir -p .data && deno run -A npm:@electric-sql/pglite-socket@^0.2.7/pglite-server --db=./.data/postgres --port=54329 --max-connections=10 --include-database-url --run 'deno task dev:ready'",
@@ -15,22 +15,28 @@
         "build": "deno run -A npm:vite@^8.1.5 build",
         "preview": "deno run -A npm:vite@^8.1.5 preview",
         "check": "deno task build && deno check db/migrate.ts main.ts",
+        "fmt": "deno run -A npm:oxfmt@^0.47.0",
+        "lint": "deno run -A npm:oxlint@^1.62.0",
         "db:migrate": "deno -A db/migrate.ts",
         "db:reset": "rm -rf .data/postgres",
-        "start": "deno run -A main.ts"
+        "start": "deno run -A main.ts",
     },
     "deploy": {
         // `deno deploy` uploads respect .gitignore. Un-exclude the CI-built
         // output so the deploy tarball ships `dist/` — the Vite build always
         // runs in CI (or locally), never on Deno Deploy.
-        "exclude": ["!dist"]
+        "exclude": ["!dist"],
     },
     "compilerOptions": {
         "jsx": "react-jsx",
-        "jsxImportSource": "remix/ui"
+        "jsxImportSource": "remix/ui",
     },
+    // oxfmt formats this template (`deno task fmt`), the same as every other
+    // template here. `deno fmt` is switched off rather than left to fight it:
+    // it has no arrow-parens option, so it rewrites files that are currently
+    // byte-identical to their node counterparts, and it reindents the SVG
+    // logos under public/, which are assets rather than source.
     "fmt": {
-        "indentWidth": 4,
-        "lineWidth": 100
-    }
+        "exclude": ["."],
+    },
 }

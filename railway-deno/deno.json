@@ -10,6 +10,8 @@
         "build": "deno run -A npm:vite@^8.1.5 build",
         "preview": "deno run -A npm:vite@^8.1.5 preview",
         "check": "deno check db/migrate.ts",
+        "fmt": "deno run -A npm:oxfmt@^0.47.0",
+        "lint": "deno run -A npm:oxlint@^1.62.0",
         "db:migrate": "deno -A --env-file=.env db/migrate.ts",
         "db:reset": "rm -rf db/data.db",
         "start": "deno serve -A --port=${PORT:-3000} dist/ssr/index.js"
@@ -18,8 +20,12 @@
         "jsx": "react-jsx",
         "jsxImportSource": "remix/ui"
     },
+    // oxfmt formats this template (`deno task fmt`), the same as every other
+    // template here. `deno fmt` is switched off rather than left to fight it:
+    // it has no arrow-parens option, so it rewrites files that are currently
+    // byte-identical to their node counterparts, and it reindents the SVG
+    // logos under public/, which are assets rather than source.
     "fmt": {
-        "indentWidth": 4,
-        "lineWidth": 100
+        "exclude": ["."]
     }
 }
