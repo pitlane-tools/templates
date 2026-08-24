@@ -18,7 +18,7 @@
         // to `imports`, so none of it is importable from application code.
         // The committed lockfile is what makes `deno install` restore them on
         // a fresh clone; re-run this task when bumping any of these.
-        "tooling": "deno cache npm:@types/node npm:eslint-plugin-perfectionist",
+        "tooling": "deno cache npm:oxlint-tsgolint npm:@types/node npm:eslint-plugin-perfectionist",
         "db:migrate": "deno -A --env-file=.env db/migrate.ts",
         "db:reset": "rm -rf db/data.db",
         "start": "deno serve -A --port=${PORT:-3000} dist/ssr/index.js",

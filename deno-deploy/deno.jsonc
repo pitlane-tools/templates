@@ -23,7 +23,7 @@
         // to `imports`, so none of it is importable from application code.
         // The committed lockfile is what makes `deno install` restore them on
         // a fresh clone; re-run this task when bumping any of these.
-        "tooling": "deno cache npm:@types/node npm:@types/pg npm:@types/deno npm:eslint-plugin-perfectionist",
+        "tooling": "deno cache npm:oxlint-tsgolint npm:@types/node npm:@types/pg npm:@types/deno npm:eslint-plugin-perfectionist",
         "db:migrate": "deno -A db/migrate.ts",
         "db:reset": "rm -rf .data/postgres",
         "start": "deno run -A main.ts",
