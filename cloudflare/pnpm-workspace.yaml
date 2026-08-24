@@ -8,7 +8,8 @@ allowBuilds:
     esbuild: false
     sharp: false
 
-# Trust Pitlane's own package at any release age; everything else keeps
+# Trust Pitlane's own packages at any release age; everything else keeps
 # pnpm's default minimum-release-age protection.
 minimumReleaseAgeExclude:
+    - "@pitlane/data-table-d1"
     - "@pitlane/dev"

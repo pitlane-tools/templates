@@ -75,9 +75,13 @@ allowBuilds:
 # dependencies by default.
 blockExoticSubdeps: false
 
-# This repository validates @pitlane/dev releases the moment they publish;
-# pnpm 11's minimum-release-age gate would otherwise block fresh versions.
+# This repository validates Pitlane releases the moment they publish; pnpm 11's
+# minimum-release-age gate would otherwise block fresh versions. Every Pitlane
+# package a template depends on has to be listed: a missing entry does not fail
+# with a release-age message, it churns resolution until the git-hosted remix
+# preview re-prepares and dies on its own out-of-date lockfile.
 # Scaffolded apps carry the same exclusion in their own pnpm-workspace.yaml —
-# a Pitlane template trusts Pitlane's package at any age.
+# a Pitlane template trusts Pitlane's packages at any age.
 minimumReleaseAgeExclude:
+    - "@pitlane/data-table-d1"
     - "@pitlane/dev"
