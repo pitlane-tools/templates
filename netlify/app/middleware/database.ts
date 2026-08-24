@@ -2,8 +2,8 @@ import { Env } from "#app/data/schemas.ts";
 import { parseEnv } from "#app/utils/parse-env.ts";
 import { Pool } from "pg";
 import { assert } from "remix/assert";
-import { createDatabase, Database } from "remix/data-table";
-import { createPostgresDatabaseAdapter } from "remix/data-table/postgres";
+import { Database } from "remix/data-table";
+import { createPostgresDatabase } from "remix/data-table/postgres";
 import { type Middleware } from "remix/router";
 
 const { NETLIFY_DATABASE_URL, DATABASE_URL } = parseEnv(Env);
@@ -25,8 +25,7 @@ export function loadDatabase(): Middleware<{
         // a small pool is also the right shape for serverless Postgres.
         max: process.env.NODE_ENV === "development" ? 1 : 5,
     });
-    let adapter = createPostgresDatabaseAdapter(pool);
-    let db = createDatabase(adapter);
+    let db = createPostgresDatabase(pool);
 
     return (context, next) => {
         context.set(Database, db, { property: "db" });
