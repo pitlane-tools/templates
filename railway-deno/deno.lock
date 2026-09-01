@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@pitlane/dev@0.4": "0.4.0_remix@3.0.0-rc.1_vite@8.2.2",
+    "npm:@pitlane/dev@0.6": "0.6.0_remix@3.0.0-rc.1_vite@8.2.2",
     "npm:@types/node@*": "26.2.0",
     "npm:eslint-plugin-perfectionist@*": "5.10.1_eslint@10.9.0_typescript@7.0.2",
     "npm:oxfmt@0.47": "0.47.0",
@@ -200,7 +200,7 @@
         "levn"
       ]
     },
-    "@hiogawa/vite-plugin-fullstack@0.0.11_vite@8.2.2_@types+node@26.2.0": {
+    "@hiogawa/vite-plugin-fullstack@0.0.11_vite@8.2.2": {
       "integrity": "sha512-PEA5TmioqP0aqbWUA2upmgmjap7sqrHFo3+xx2+/B15vBD3uWeeWvJbCeaxjRGbnjPXpxJTZstZv8m0UB8FUQw==",
       "dependencies": [
         "@rolldown/pluginutils@1.0.0-beta.55",
@@ -995,10 +995,17 @@
       "os": ["win32"],
       "cpu": ["x64"]
     },
-    "@pitlane/dev@0.4.0_remix@3.0.0-rc.1_vite@8.2.2": {
-      "integrity": "sha512-t5oJRp4mKTVvlEKSUfC2vrJXCRLpyHBHC3VePeh8PX2QKHEylrlJJ/GctDc+ueZIz8AxFjKsEOfziuADTGgchw==",
+    "@pitlane/crawler@0.2.0_remix@3.0.0-rc.1": {
+      "integrity": "sha512-eu8GKfAxiBvXFO6Dp+BnputbBx3AsCzMz7qjdhmTHWyS+fZn6e8dCPRdIPA+Ejur0Yvu7wohT4pmnIr/T874xw==",
+      "dependencies": [
+        "remix"
+      ]
+    },
+    "@pitlane/dev@0.6.0_remix@3.0.0-rc.1_vite@8.2.2": {
+      "integrity": "sha512-dwwj2pvYoezF00Kr6vrTfECPqEK/5DFl8+EriKomQ/MEa46gnRL548b3+Nv0lbDnlNob1J4fUhVVQpPUX8MMWg==",
       "dependencies": [
         "@hiogawa/vite-plugin-fullstack",
+        "@pitlane/crawler",
         "magic-string",
         "oxc-parser@0.141.0",
         "remix",
@@ -2480,7 +2487,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@pitlane/dev@0.4",
+      "npm:@pitlane/dev@0.6",
       "npm:remix@3.0.0-rc.1",
       "npm:vite@^8.1.5"
     ]

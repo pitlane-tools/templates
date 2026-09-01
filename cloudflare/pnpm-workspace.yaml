@@ -11,6 +11,7 @@ allowBuilds:
 # Trust Remix and Pitlane's own packages at any release age; everything else
 # keeps pnpm's default minimum-release-age protection.
 minimumReleaseAgeExclude:
+    - "@pitlane/crawler"
     - "@pitlane/data-table-d1"
     - "@pitlane/dev"
     - "@remix-run/*"

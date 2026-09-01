@@ -12,7 +12,7 @@
     "devDependencies": {
         "@electric-sql/pglite": "^0.5.4",
         "@electric-sql/pglite-socket": "^0.2.7",
-        "@pitlane/dev": "^0.4.0",
+        "@pitlane/dev": "^0.6.0",
         "@types/node": "^25.5.0",
         "@types/pg": "^8.20.0",
         "eslint-plugin-perfectionist": "^5.8.0",
