@@ -7,7 +7,7 @@
     },
     "dependencies": {
         "idb-keyval": "^6.2.2",
-        "remix": "github:remix-run/remix#preview/pr-11687&path:packages/remix"
+        "remix": "3.0.0-rc.1"
     },
     "devDependencies": {
         "@pitlane/dev": "^0.4.0",

@@ -7,7 +7,9 @@ allowBuilds:
     esbuild: false
     sharp: false
 
-# Trust Pitlane's own package at any release age; everything else keeps
-# pnpm's default minimum-release-age protection.
+# Trust Remix and Pitlane's own packages at any release age; everything else
+# keeps pnpm's default minimum-release-age protection.
 minimumReleaseAgeExclude:
     - "@pitlane/dev"
+    - "@remix-run/*"
+    - "remix"

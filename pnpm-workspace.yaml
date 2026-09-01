@@ -15,73 +15,15 @@ allowBuilds:
     # scripts are redundant here.
     esbuild: false
     sharp: false
-    # The github-pages template installs Remix from a preview build of
-    # remix-run/remix#11687. pnpm resolves it (and its @remix-run/*
-    # dependencies) as codeload tarballs, which allowBuilds only matches by
-    # exact resolved path — regenerate these keys when the preview commit
-    # moves. The remix meta-package must build (prepare); the @remix-run/*
-    # packages ship prebuilt dist, so their scripts are declined.
-    "remix@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/remix": true
-    "@remix-run/assert@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/assert": false
-    "@remix-run/assets@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/assets": false
-    "@remix-run/async-context-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/async-context-middleware": false
-    "@remix-run/auth@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/auth": false
-    "@remix-run/auth-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/auth-middleware": false
-    "@remix-run/cli@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/cli": false
-    "@remix-run/compression-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/compression-middleware": false
-    "@remix-run/cookie@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/cookie": false
-    "@remix-run/cop-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/cop-middleware": false
-    "@remix-run/cors-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/cors-middleware": false
-    "@remix-run/csrf-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/csrf-middleware": false
-    "@remix-run/data-schema@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/data-schema": false
-    "@remix-run/data-table@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/data-table": false
-    "@remix-run/data-table-mysql@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/data-table-mysql": false
-    "@remix-run/data-table-postgres@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/data-table-postgres": false
-    "@remix-run/data-table-sqlite@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/data-table-sqlite": false
-    "@remix-run/fetch-proxy@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/fetch-proxy": false
-    "@remix-run/fetch-router@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/fetch-router": false
-    "@remix-run/file-storage@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/file-storage": false
-    "@remix-run/file-storage-s3@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/file-storage-s3": false
-    "@remix-run/form-data-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/form-data-middleware": false
-    "@remix-run/form-data-parser@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/form-data-parser": false
-    "@remix-run/fs@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/fs": false
-    "@remix-run/headers@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/headers": false
-    "@remix-run/html-template@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/html-template": false
-    "@remix-run/lazy-file@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/lazy-file": false
-    "@remix-run/logger-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/logger-middleware": false
-    "@remix-run/method-override-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/method-override-middleware": false
-    "@remix-run/mime@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/mime": false
-    "@remix-run/multipart-parser@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/multipart-parser": false
-    "@remix-run/node-fetch-server@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/node-fetch-server": false
-    "@remix-run/node-hmr@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/node-hmr": false
-    "@remix-run/node-tsx@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/node-tsx": false
-    "@remix-run/render-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/render-middleware": false
-    "@remix-run/response@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/response": false
-    "@remix-run/route-pattern@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/route-pattern": false
-    "@remix-run/session@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/session": false
-    "@remix-run/session-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/session-middleware": false
-    "@remix-run/session-storage-memcache@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/session-storage-memcache": false
-    "@remix-run/session-storage-redis@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/session-storage-redis": false
-    "@remix-run/spa@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/spa": false
-    "@remix-run/static-middleware@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/static-middleware": false
-    "@remix-run/tar-parser@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/tar-parser": false
-    "@remix-run/terminal@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/terminal": false
-    "@remix-run/test@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/test": false
-    "@remix-run/ui@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/ui": false
-    "@remix-run/ui-hmr@https://codeload.github.com/remix-run/remix/tar.gz/127d6359b57653619e523f4dadbcab6d858b8dd0#path:packages/ui-hmr": false
 
-# The remix preview build resolves its @remix-run/* dependencies as git
-# tarballs from the same commit; pnpm 11 blocks exotic transitive
-# dependencies by default.
-blockExoticSubdeps: false
-
-# This repository validates Pitlane releases the moment they publish; pnpm 11's
-# minimum-release-age gate would otherwise block fresh versions. Every Pitlane
-# package a template depends on has to be listed: a missing entry does not fail
-# with a release-age message, it churns resolution until the git-hosted remix
-# preview re-prepares and dies on its own out-of-date lockfile.
+# This repository validates Remix and Pitlane releases the moment they publish;
+# pnpm 11's minimum-release-age gate would otherwise block fresh versions. Every
+# package a template tracks that way has to be listed: a missing entry does not
+# fail with a release-age message, it churns resolution until it gives up.
 # Scaffolded apps carry the same exclusion in their own pnpm-workspace.yaml —
-# a Pitlane template trusts Pitlane's packages at any age.
+# a Pitlane template trusts these packages at any age.
 minimumReleaseAgeExclude:
     - "@pitlane/data-table-d1"
     - "@pitlane/dev"
+    - "@remix-run/*"
+    - "remix"

@@ -6,13 +6,6 @@ A [Remix 3](https://remix.run) guest book starter that runs entirely in the brow
 | ------------- | --------------- | ------------------------ | ---------------------------------------- |
 | Browser (SPA) | pnpm            | IndexedDB (`idb-keyval`) | [GitHub Pages](https://pages.github.com) |
 
-> [!NOTE]
-> This template tracks a preview build of [remix-run/remix#11687](https://github.com/remix-run/remix/pull/11687)
-> (client-rendered SPA routing). The `remix` dependency installs
-> straight from that PR's preview branch, and `pnpm-workspace.yaml` pins the
-> matching `allowBuilds` keys — pnpm only matches git-hosted packages by exact
-> commit, so regenerate those keys whenever the preview commit moves.
-
 ## Scaffold
 
 ```sh
