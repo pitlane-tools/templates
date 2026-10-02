@@ -38,7 +38,7 @@ export default defineConfig({
                 cache: false,
             },
             "typegen:cloudflare": {
-                input: ["wrangler.jsonc"],
+                cache: { input: ["wrangler.jsonc"] },
                 command: "wrangler types",
             },
             typecheck: {
