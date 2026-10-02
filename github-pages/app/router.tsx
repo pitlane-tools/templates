@@ -4,9 +4,9 @@ import { render } from "remix/spa";
 
 import guestBook from "#app/actions/guest-book.tsx";
 import { NotFound } from "#app/components/NotFound.tsx";
-import { Theme } from "#app/components/Theme.tsx";
 import { loadStorage } from "#app/middleware/storage.ts";
 import { routes } from "#app/routes.ts";
+import { Theme } from "#app/theme.ts";
 
 type AppContext = MiddlewareContext<
     [ReturnType<typeof render>, ReturnType<typeof formData>, ReturnType<typeof loadStorage>]

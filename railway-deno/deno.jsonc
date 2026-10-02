@@ -1,8 +1,9 @@
 {
     "nodeModulesDir": "auto",
     "imports": {
-        "@pitlane/dev": "npm:@pitlane/dev@^0.6.0",
-        "remix": "npm:remix@3.0.0-rc.1",
+        "@pitlane/dev": "npm:@pitlane/dev@^0.7.0",
+        "@pitlane/theme": "npm:@pitlane/theme@^0.5.0",
+        "remix": "npm:remix@3.0.0",
         "vite": "npm:vite@^8.1.5",
     },
     "tasks": {
@@ -25,7 +26,7 @@
     },
     "compilerOptions": {
         "jsx": "react-jsx",
-        "jsxImportSource": "remix/ui",
+        "jsxImportSource": "remix/component",
     },
     // oxfmt formats this template (`deno task fmt`), the same as every other
     // template here. `deno fmt` is switched off rather than left to fight it:
