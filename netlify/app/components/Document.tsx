@@ -1,7 +1,7 @@
 import { mergeAssets } from "@pitlane/dev/runtime";
 import { css } from "@pitlane/theme";
+import { Frame } from "remix/component";
 import { getContext } from "remix/middleware/async-context";
-import { Frame } from "remix/ui";
 
 import clientAssets from "#app/entry.browser.ts?assets=client";
 import serverAssets from "#app/entry.server.tsx?assets=ssr";

@@ -14,5 +14,6 @@ minimumReleaseAgeExclude:
     - "@pitlane/crawler"
     - "@pitlane/data-table-d1"
     - "@pitlane/dev"
+    - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"

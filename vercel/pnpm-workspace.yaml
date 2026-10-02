@@ -12,5 +12,6 @@ allowBuilds:
 minimumReleaseAgeExclude:
     - "@pitlane/crawler"
     - "@pitlane/dev"
+    - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"

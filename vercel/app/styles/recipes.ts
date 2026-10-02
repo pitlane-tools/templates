@@ -5,13 +5,8 @@ import { tva } from "@pitlane/theme";
 import { t } from "#app/theme.ts";
 
 /**
- * Shared control styling, built from the app's own tokens.
- *
- * `remix/ui` ships `button()` and `inputStyle`, but both carry their own
- * hard-coded palette and both are typed against `Element`, so neither
- * composes into a `mix` array on a typed host element. These recipes
- * cover the same ground through `<Theme />`, which means one palette,
- * dark mode for free, and a compile error for any off-palette value.
+ * Shared control styling, built from the app's own tokens: one palette, dark
+ * mode through `<Theme />`, and a compile error for any off-palette value.
  */
 
 /** Text inputs and textareas. */

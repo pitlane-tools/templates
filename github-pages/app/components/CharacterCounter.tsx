@@ -1,5 +1,5 @@
 import { css } from "@pitlane/theme";
-import { type Handle, on } from "remix/ui";
+import { type Handle, on } from "remix/component";
 
 import { field } from "#app/styles/recipes.ts";
 import { t } from "#app/theme.ts";

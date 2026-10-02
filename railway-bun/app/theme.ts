@@ -1,267 +1,223 @@
 import { createTheme } from "@pitlane/theme";
+import * as s from "@pitlane/theme/schema";
 
 /**
- * App-owned design tokens, defined once as a W3C DTCG token document and
- * installed on the document as CSS custom properties by `<Theme />`.
+ * App-owned design tokens, installed on the document as CSS custom properties
+ * by `<Theme />`.
  *
- * Dark mode lives in `modes.dark`: the base values are the light palette, and
- * each dark override changes only the colors that differ. `<Theme />` emits a
- * `:root` block plus one `@media (prefers-color-scheme: dark)` block, so the OS
- * appearance setting flips the variables with no attribute selectors and no
- * JavaScript — every alias follows in pure CSS.
+ * The schema names each group's token type, and the token values are the CSS
+ * they become. Dark mode lives in `modes.dark`: the base values are the light
+ * palette, and the dark mode overrides only the colors that differ. `<Theme />`
+ * emits a `:root` block plus one `@media (prefers-color-scheme: dark)` block,
+ * so the OS appearance setting flips the variables with no attribute selectors
+ * and no JavaScript.
+ *
+ * Tokens that reference other tokens are declared in the `extend` layer, where
+ * the base accessor is in scope. Each one stays a `var()` reference, so a dark
+ * override of the token it names flows through the cascade.
  *
  * Reference tokens in `css()` mixins through the exported `t`, e.g.
  * `css({ gap: t.space.md })`.
  */
-export let { token: t, Theme } = createTheme(
-    {
+export let { token: t, Theme } = createTheme({
+    schema: {
+        fontFamily: s.font.family(),
+        space: s.dimension(),
+        layout: s.dimension(),
+        size: s.dimension(),
+        radius: s.dimension(),
+        fontSize: s.dimension(),
+        lineHeight: s.number(),
+        letterSpacing: s.dimension(),
+        fontWeight: s.font.weight(),
+        control: s.dimension(),
+        shadow: s.shadow(),
+        surface: s.color(),
+        colors: s.color(),
+    },
+    tokens: {
         fontFamily: {
-            $type: "fontFamily",
-            sans: {
-                $value: [
-                    "Inter var",
-                    "ui-sans-serif",
-                    "system-ui",
-                    "sans-serif",
-                    "Apple Color Emoji",
-                    "Segoe UI Emoji",
-                    "Segoe UI Symbol",
-                    "Noto Color Emoji",
-                ],
-            },
-            mono: {
-                $value: [
-                    "ui-monospace",
-                    "SFMono-Regular",
-                    "Menlo",
-                    "Monaco",
-                    "Consolas",
-                    "Liberation Mono",
-                    "Courier New",
-                    "monospace",
-                ],
-            },
+            sans: [
+                "Inter var",
+                "ui-sans-serif",
+                "system-ui",
+                "sans-serif",
+                "Apple Color Emoji",
+                "Segoe UI Emoji",
+                "Segoe UI Symbol",
+                "Noto Color Emoji",
+            ],
+            mono: [
+                "ui-monospace",
+                "SFMono-Regular",
+                "Menlo",
+                "Monaco",
+                "Consolas",
+                "Liberation Mono",
+                "Courier New",
+                "monospace",
+            ],
         },
         space: {
-            $type: "dimension",
-            none: { $value: "0px" },
-            px: { $value: "1px" },
-            xs: { $value: "2px" },
-            sm: { $value: "4px" },
-            md: { $value: "8px" },
-            lg: { $value: "12px" },
-            xl: { $value: "16px" },
-            xxl: { $value: "24px" },
+            none: "0px",
+            px: "1px",
+            xs: "2px",
+            sm: "4px",
+            md: "8px",
+            lg: "12px",
+            xl: "16px",
+            xxl: "24px",
         },
         layout: {
-            $type: "dimension",
-            gutter: { $value: "{space.xl}" },
-            section: { $value: "32px" },
-            block: { $value: "48px" },
-            page: { $value: "64px" },
+            section: "32px",
+            block: "48px",
+            page: "64px",
         },
         size: {
-            $type: "dimension",
-            logo: { $value: "40px" },
-            column: { $value: "448px" },
-            prose: { $value: "512px" },
-            full: { $value: "100%" },
-            screen: { $value: "100vh" },
+            logo: "40px",
+            column: "448px",
+            prose: "512px",
+            full: "100%",
+            screen: "100vh",
         },
         radius: {
-            $type: "dimension",
-            none: { $value: "0px" },
-            sm: { $value: "4px" },
-            md: { $value: "6px" },
-            lg: { $value: "8px" },
-            xl: { $value: "12px" },
-            full: { $value: "9999px" },
+            none: "0px",
+            sm: "4px",
+            md: "6px",
+            lg: "8px",
+            xl: "12px",
+            full: "9999px",
         },
         fontSize: {
-            $type: "dimension",
-            xxxs: { $value: "10px" },
-            xxs: { $value: "11px" },
-            xs: { $value: "12px" },
-            sm: { $value: "14px" },
-            md: { $value: "16px" },
-            lg: { $value: "18px" },
-            xl: { $value: "20px" },
-            xxl: { $value: "28px" },
-            xxxl: { $value: "36px" },
+            xxxs: "10px",
+            xxs: "11px",
+            xs: "12px",
+            sm: "14px",
+            md: "16px",
+            lg: "18px",
+            xl: "20px",
+            xxl: "28px",
+            xxxl: "36px",
         },
-        lineHeight: {
-            $type: "number",
-            tight: { $value: 1.2 },
-            normal: { $value: 1.5 },
-            relaxed: { $value: 1.7 },
-        },
+        lineHeight: { tight: 1.2, normal: 1.5, relaxed: 1.7 },
         letterSpacing: {
-            $type: "dimension",
-            tight: { $value: "-0.025em" },
-            normal: { $value: "0" },
-            meta: { $value: "0.025em" },
-            wide: { $value: "0.05em" },
+            tight: "-0.025em",
+            normal: "0",
+            meta: "0.025em",
+            wide: "0.05em",
         },
-        fontWeight: {
-            $type: "fontWeight",
-            normal: { $value: 400 },
-            medium: { $value: 500 },
-            semibold: { $value: 600 },
-            bold: { $value: 700 },
-        },
-        control: {
-            height: {
-                $type: "dimension",
-                sm: { $value: "28px" },
-                md: { $value: "36px" },
-                lg: { $value: "44px" },
-            },
-        },
+        fontWeight: { normal: 400, medium: 500, semibold: 600, bold: 700 },
+        control: { height: { sm: "28px", md: "36px", lg: "44px" } },
         shadow: {
-            $type: "shadow",
-            xs: {
-                $value: { color: "rgb(0 0 0 / 0.05)", offsetX: "0px", offsetY: "1px", blur: "2px" },
-            },
-            sm: {
-                $value: { color: "rgb(0 0 0 / 0.10)", offsetX: "0px", offsetY: "1px", blur: "3px" },
-            },
-            md: {
-                $value: {
-                    color: "rgb(0 0 0 / 0.12)",
-                    offsetX: "0px",
-                    offsetY: "4px",
-                    blur: "10px",
-                },
-            },
-            lg: {
-                $value: {
-                    color: "rgb(0 0 0 / 0.16)",
-                    offsetX: "0px",
-                    offsetY: "10px",
-                    blur: "30px",
-                },
-            },
-            xl: {
-                $value: {
-                    color: "rgb(0 0 0 / 0.20)",
-                    offsetX: "0px",
-                    offsetY: "20px",
-                    blur: "50px",
-                },
-            },
-            // `inset: true` moves the shadow inside the border box. The color
-            // is an alias, so the dark override below flips it through the
-            // cascade instead of restating the whole shadow.
-            inset: {
-                $value: {
-                    color: "{colors.highlight.inset}",
-                    offsetX: "0px",
-                    offsetY: "1px",
-                    blur: "0px",
-                    inset: true,
-                },
-            },
+            xs: "0px 1px 2px rgb(0 0 0 / 0.05)",
+            sm: "0px 1px 3px rgb(0 0 0 / 0.10)",
+            md: "0px 4px 10px rgb(0 0 0 / 0.12)",
+            lg: "0px 10px 30px rgb(0 0 0 / 0.16)",
+            xl: "0px 20px 50px rgb(0 0 0 / 0.20)",
         },
         surface: {
-            $type: "color",
-            lvl0: { $value: "#ffffff" },
-            lvl1: { $value: "#f9fafb" },
-            lvl2: { $value: "#f3f4f6" },
-            lvl3: { $value: "#e5e7eb" },
-            lvl4: { $value: "#d1d5db" },
+            lvl0: "#ffffff",
+            lvl1: "#f9fafb",
+            lvl2: "#f3f4f6",
+            lvl3: "#e5e7eb",
+            lvl4: "#d1d5db",
         },
         colors: {
-            $type: "color",
             text: {
-                primary: { $value: "#111827" },
-                secondary: { $value: "#374151" },
-                muted: { $value: "#6b7280" },
-                warning: { $value: "#ef4444" },
-                link: { $value: "#2563eb" },
-                linkHover: { $value: "#1e40af" },
+                primary: "#111827",
+                secondary: "#374151",
+                muted: "#6b7280",
+                warning: "#ef4444",
+                link: "#2563eb",
+                linkHover: "#1e40af",
             },
-            highlight: { inset: { $value: "rgb(255 255 255 / 0.7)" } },
+            highlight: { inset: "rgb(255 255 255 / 0.7)" },
             border: {
-                subtle: { $value: "#e5e7eb" },
-                default: { $value: "#d1d5db" },
-                strong: { $value: "#9ca3af" },
+                subtle: "#e5e7eb",
+                default: "#d1d5db",
+                strong: "#9ca3af",
             },
-            focus: { ring: { $value: "#3b82f6" } },
-            overlay: { scrim: { $value: "rgb(0 0 0 / 0.45)" } },
+            focus: { ring: "#3b82f6" },
+            overlay: { scrim: "rgb(0 0 0 / 0.45)" },
             action: {
                 primary: {
-                    background: { $value: "#2563eb" },
-                    backgroundHover: { $value: "#1d4ed8" },
-                    backgroundActive: { $value: "#1e40af" },
-                    foreground: { $value: "#ffffff" },
-                    border: { $value: "#2563eb" },
+                    background: "#2563eb",
+                    backgroundHover: "#1d4ed8",
+                    backgroundActive: "#1e40af",
+                    foreground: "#ffffff",
+                    border: "#2563eb",
                 },
                 secondary: {
-                    background: { $value: "#ffffff" },
-                    backgroundHover: { $value: "#f9fafb" },
-                    backgroundActive: { $value: "#f3f4f6" },
-                    foreground: { $value: "#111827" },
-                    border: { $value: "#d1d5db" },
+                    background: "#ffffff",
+                    backgroundHover: "#f9fafb",
+                    backgroundActive: "#f3f4f6",
+                    foreground: "#111827",
+                    border: "#d1d5db",
                 },
                 danger: {
-                    background: { $value: "#dc2626" },
-                    backgroundHover: { $value: "#b91c1c" },
-                    backgroundActive: { $value: "#991b1b" },
-                    foreground: { $value: "#ffffff" },
-                    border: { $value: "#dc2626" },
+                    background: "#dc2626",
+                    backgroundHover: "#b91c1c",
+                    backgroundActive: "#991b1b",
+                    foreground: "#ffffff",
+                    border: "#dc2626",
                 },
             },
         },
     },
-    {
-        modes: {
-            dark: {
+    modes: {
+        dark: {
+            tokens: {
                 surface: {
-                    lvl0: { $value: "#0a0a0a" },
-                    lvl1: { $value: "#111827" },
-                    lvl2: { $value: "#1f2937" },
-                    lvl3: { $value: "#374151" },
-                    lvl4: { $value: "#4b5563" },
+                    lvl0: "#0a0a0a",
+                    lvl1: "#111827",
+                    lvl2: "#1f2937",
+                    lvl3: "#374151",
+                    lvl4: "#4b5563",
                 },
                 colors: {
                     text: {
-                        primary: { $value: "#f3f4f6" },
-                        secondary: { $value: "#d1d5db" },
-                        muted: { $value: "#9ca3af" },
-                        warning: { $value: "#f87171" },
-                        link: { $value: "#60a5fa" },
-                        linkHover: { $value: "#93c5fd" },
+                        primary: "#f3f4f6",
+                        secondary: "#d1d5db",
+                        muted: "#9ca3af",
+                        warning: "#f87171",
+                        link: "#60a5fa",
+                        linkHover: "#93c5fd",
                     },
-                    highlight: { inset: { $value: "rgb(255 255 255 / 0.04)" } },
+                    highlight: { inset: "rgb(255 255 255 / 0.04)" },
                     border: {
-                        subtle: { $value: "#1f2937" },
-                        default: { $value: "#374151" },
-                        strong: { $value: "#4b5563" },
+                        subtle: "#1f2937",
+                        default: "#374151",
+                        strong: "#4b5563",
                     },
-                    focus: { ring: { $value: "#60a5fa" } },
+                    focus: { ring: "#60a5fa" },
                     action: {
                         primary: {
-                            background: { $value: "#3b82f6" },
-                            backgroundHover: { $value: "#2563eb" },
-                            backgroundActive: { $value: "#1d4ed8" },
-                            border: { $value: "#3b82f6" },
+                            background: "#3b82f6",
+                            backgroundHover: "#2563eb",
+                            backgroundActive: "#1d4ed8",
+                            border: "#3b82f6",
                         },
                         secondary: {
-                            background: { $value: "#18181b" },
-                            backgroundHover: { $value: "#27272a" },
-                            backgroundActive: { $value: "#3f3f46" },
-                            foreground: { $value: "#f3f4f6" },
-                            border: { $value: "#374151" },
+                            background: "#18181b",
+                            backgroundHover: "#27272a",
+                            backgroundActive: "#3f3f46",
+                            foreground: "#f3f4f6",
+                            border: "#374151",
                         },
                         danger: {
-                            background: { $value: "#ef4444" },
-                            backgroundHover: { $value: "#dc2626" },
-                            backgroundActive: { $value: "#b91c1c" },
-                            border: { $value: "#ef4444" },
+                            background: "#ef4444",
+                            backgroundHover: "#dc2626",
+                            backgroundActive: "#b91c1c",
+                            border: "#ef4444",
                         },
                     },
                 },
             },
         },
     },
-);
+}).extend(base => ({
+    tokens: {
+        layout: { gutter: base.space.xl },
+        shadow: { inset: `inset 0px 1px 0px ${base.colors.highlight.inset}` },
+    },
+}));

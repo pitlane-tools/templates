@@ -1,5 +1,5 @@
 import { css } from "@pitlane/theme";
-import { type Handle } from "remix/ui";
+import { type Handle } from "remix/component";
 
 import type { GuestBookEntry } from "#app/data/schemas.ts";
 

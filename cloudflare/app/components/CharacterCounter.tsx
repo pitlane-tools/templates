@@ -1,5 +1,5 @@
 import { css } from "@pitlane/theme";
-import { clientEntry, on } from "remix/ui";
+import { clientEntry, on } from "remix/component";
 
 import { field } from "#app/styles/recipes.ts";
 import { t } from "#app/theme.ts";
