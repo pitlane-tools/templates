@@ -168,8 +168,8 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         <input mix={[field()]} name="name" placeholder="Your name" required />
                         <CharacterCounter />
                         <button
+                            data-rmx-target="welcome"
                             mix={[button({ tone: "primary" }), css({ alignSelf: "flex-end" })]}
-                            rmx-target="welcome"
                             type="submit"
                         >
                             Sign
@@ -193,7 +193,6 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
         return (
             <a
                 href={href}
-                target="_blank"
                 mix={[
                     css({
                         color: t.colors.text.link,
@@ -204,6 +203,7 @@ function ResourceLink(handle: Handle<ResourceLinkProps>) {
                         },
                     }),
                 ]}
+                target="_blank"
             >
                 {label}
             </a>
