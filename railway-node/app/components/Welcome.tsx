@@ -154,8 +154,11 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         )}
                     </div>
 
+                    {/* Keyed by entry count so each Sign swaps in a fresh, empty
+                        form; the frame update would otherwise keep typed values. */}
                     <form
                         action={routes.guestBook.action.href()}
+                        data-rmx-key={`sign-form-${entries.length}`}
                         method={routes.guestBook.action.method}
                         mix={[
                             css({
@@ -168,6 +171,7 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         <input mix={[field()]} name="name" placeholder="Your name" required />
                         <CharacterCounter />
                         <button
+                            data-rmx-reset-scroll="false"
                             data-rmx-target="welcome"
                             mix={[button({ tone: "primary" }), css({ alignSelf: "flex-end" })]}
                             type="submit"
