@@ -1,7 +1,8 @@
-import { type Handle, css, on } from "remix/ui";
-import { inputStyle } from "remix/ui/combobox";
+import { css } from "@pitlane/theme";
+import { type Handle, on } from "remix/ui";
 
-import { theme } from "#app/components/Theme.tsx";
+import { field } from "#app/styles/recipes.ts";
+import { t } from "#app/theme.ts";
 
 const MAX_LENGTH = 280;
 
@@ -17,7 +18,7 @@ export function CharacterCounter(handle: Handle) {
                     css({
                         display: "flex",
                         flexDirection: "column",
-                        gap: theme.space.sm,
+                        gap: t.space.sm,
                     }),
                 ]}
             >
@@ -28,13 +29,7 @@ export function CharacterCounter(handle: Handle) {
                             count = event.currentTarget.value.length;
                             handle.update();
                         }),
-                        inputStyle,
-                        css({
-                            paddingBlock: theme.space.sm,
-                            resize: "vertical",
-                            boxShadow:
-                                "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
-                        }),
+                        field(),
                     ]}
                     name="message"
                     placeholder="Leave a message..."
@@ -45,11 +40,11 @@ export function CharacterCounter(handle: Handle) {
                     data-warning={remaining <= 20 ? "" : undefined}
                     mix={[
                         css({
-                            fontSize: theme.fontSize.xs,
-                            color: theme.colors.text.muted,
+                            fontSize: t.fontSize.xs,
+                            color: t.colors.text.muted,
                             textAlign: "right",
                             "&[data-warning]": {
-                                color: "light-dark(#ef4444, #f87171)",
+                                color: t.colors.text.warning,
                             },
                         }),
                     ]}

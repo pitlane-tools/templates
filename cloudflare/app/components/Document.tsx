@@ -1,11 +1,12 @@
 import { mergeAssets } from "@pitlane/dev/runtime";
+import { css } from "@pitlane/theme";
 import { getContext } from "remix/middleware/async-context";
-import { Frame, css } from "remix/ui";
+import { Frame } from "remix/ui";
 
-import { Theme, theme } from "#app/components/Theme.tsx";
 import clientAssets from "#app/entry.browser.ts?assets=client";
 import serverAssets from "#app/entry.server.tsx?assets=ssr";
 import styles from "#app/styles/preflight.css?url";
+import { t, Theme } from "#app/theme.ts";
 
 export function Document() {
     let { url } = getContext();
@@ -15,7 +16,7 @@ export function Document() {
         <html
             lang="en"
             mix={css({
-                backgroundColor: theme.surface.lvl0,
+                backgroundColor: t.surface.lvl0,
             })}
         >
             <head>
