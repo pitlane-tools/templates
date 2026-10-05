@@ -60,7 +60,7 @@ jobs:
               with:
                   deno-version: v2.x
 
-            # CI validates @pitlane/dev releases the moment they publish, so
+            # CI validates pitlane releases the moment they publish, so
             # Deno's minimum-dependency-age gate (24h) is disabled here only —
             # scaffolded apps keep the default supply-chain protection.
             - run: deno install --allow-scripts --minimum-dependency-age=0

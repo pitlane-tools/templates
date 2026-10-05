@@ -1,6 +1,6 @@
 # Pitlane — Deno Deploy Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
 
 | Runtime | Package manager | Database   | Deploys to                             |
 | ------- | --------------- | ---------- | -------------------------------------- |
@@ -27,6 +27,10 @@ curl -fsSL https://deno.land/install.sh | sh # or: brew install deno
 deno install --allow-scripts # install dependencies from deno.jsonc
 deno task dev                # start PGlite + migrate + dev server
 ```
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Database
 

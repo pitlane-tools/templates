@@ -1,5 +1,5 @@
-import { mergeAssets } from "@pitlane/dev/runtime";
-import { css } from "@pitlane/theme";
+import { mergeAssets } from "pitlane/dev/runtime";
+import { css } from "pitlane/theme";
 import { Frame } from "remix/component";
 import { getContext } from "remix/middleware/async-context";
 

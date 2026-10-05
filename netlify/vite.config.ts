@@ -1,5 +1,5 @@
 import netlify from "@netlify/vite-plugin";
-import { remix } from "@pitlane/dev";
+import { remix } from "pitlane/dev";
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig } from "vite-plus";
 

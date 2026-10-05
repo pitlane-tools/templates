@@ -1,6 +1,6 @@
 # Pitlane — Netlify Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running on [Netlify](https://www.netlify.com) — static client from the CDN, SSR through one Netlify Function — with PostgreSQL via [Netlify DB](https://docs.netlify.com/build/data-and-storage/netlify-db/).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running on [Netlify](https://www.netlify.com) — static client from the CDN, SSR through one Netlify Function — with PostgreSQL via [Netlify DB](https://docs.netlify.com/build/data-and-storage/netlify-db/).
 
 | Runtime                  | Package manager | Database   | Deploys to                         |
 | ------------------------ | --------------- | ---------- | ---------------------------------- |
@@ -34,6 +34,10 @@ irm https://vite.plus/ps1 | iex
 vp install # install dependencies
 vp dev     # start PGlite + migrate + dev server (with Netlify platform emulation)
 ```
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Database
 

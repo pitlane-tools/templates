@@ -1,6 +1,6 @@
 # Pitlane — Railway Template (Deno)
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — with [`node:sqlite`](https://docs.deno.com/api/node/sqlite/) (Deno implements the Node API), containerized for [Railway](https://railway.com).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — with [`node:sqlite`](https://docs.deno.com/api/node/sqlite/) (Deno implements the Node API), containerized for [Railway](https://railway.com).
 
 | Runtime | Package manager | Database      | Deploys to                                 |
 | ------- | --------------- | ------------- | ------------------------------------------ |
@@ -29,6 +29,10 @@ deno task dev                # migrate the SQLite database, then start Vite
 ```
 
 The dev server reads `DATABASE_URL` from [.env](./.env) (defaults to `db/data.db`).
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Commands
 

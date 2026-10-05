@@ -1,6 +1,6 @@
 # Pitlane — Railway Template (Node)
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running on Node.js with [`node:sqlite`](https://nodejs.org/api/sqlite.html), containerized for [Railway](https://railway.com).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running on Node.js with [`node:sqlite`](https://nodejs.org/api/sqlite.html), containerized for [Railway](https://railway.com).
 
 | Runtime | Package manager | Database      | Deploys to                                 |
 | ------- | --------------- | ------------- | ------------------------------------------ |
@@ -36,6 +36,10 @@ vp dev     # migrate the SQLite database, then start the dev server
 ```
 
 The dev server reads `DATABASE_URL` from [.env](./.env) (defaults to `db/data.db`).
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Commands
 

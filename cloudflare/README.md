@@ -1,6 +1,6 @@
 # Pitlane — Cloudflare Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), deploying to [Cloudflare Workers](https://developers.cloudflare.com/workers/) with a [D1](https://developers.cloudflare.com/d1/) database. **[See it live →](https://pitlane-cloudflare.mark-malstrom.workers.dev)**
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), deploying to [Cloudflare Workers](https://developers.cloudflare.com/workers/) with a [D1](https://developers.cloudflare.com/d1/) database. **[See it live →](https://pitlane-cloudflare.mark-malstrom.workers.dev)**
 
 | Runtime            | Package manager | Database     | Deploys to                                                       |
 | ------------------ | --------------- | ------------ | ---------------------------------------------------------------- |
@@ -36,6 +36,10 @@ You will also need a [Cloudflare account](https://dash.cloudflare.com/sign-up) t
 vp install # install dependencies
 vp dev     # typegen + local D1 migrations, then start the dev server
 ```
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Commands
 
