@@ -1,5 +1,7 @@
 # Pitlane — Deno Deploy Template
 
+> **Draft preview branch:** Install dependencies with Node 24 and `npm ci`, then use `deno task dev`, `deno task build`, and `deno task check` as usual. Deno cannot install the pinned `pkg.pr.new` tarballs itself. Tooling dependencies are installed by npm; do not run `deno task tooling` on this branch. The Deno-native installation and deployment instructions below describe the release configuration, not this preview. Do not deploy this branch. Before marking the PR ready or merging, replace the preview pins with published versions, restore Deno-native installation and its CI step, remove the temporary npm manifests/locks, and regenerate `deno.lock`.
+
 A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
 
 | Runtime | Package manager | Database   | Deploys to                             |

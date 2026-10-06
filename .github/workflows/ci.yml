@@ -60,10 +60,13 @@ jobs:
               with:
                   deno-version: v2.x
 
-            # CI validates @pitlane/dev releases the moment they publish, so
-            # Deno's minimum-dependency-age gate (24h) is disabled here only —
-            # scaffolded apps keep the default supply-chain protection.
-            - run: deno install --allow-scripts --minimum-dependency-age=0
+            # Deno cannot install preview tarballs. Restore deno install and auto
+            # node_modules mode when the preview pins become published versions.
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+
+            - run: npm ci
 
             - run: deno task build
 

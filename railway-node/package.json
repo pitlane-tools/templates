@@ -10,7 +10,7 @@
         "remix": "3.0.0"
     },
     "devDependencies": {
-        "@pitlane/dev": "^0.8.0",
+        "@pitlane/dev": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/dev@24f908f",
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",

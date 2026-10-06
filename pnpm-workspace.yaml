@@ -29,3 +29,10 @@ minimumReleaseAgeExclude:
     - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"
+
+# TEMPORARY while templates PR #12 is a draft: @pitlane/dev is pinned to the
+# pkg.pr.new preview of pitlane@24f908f until 0.8.0 publishes. That preview
+# depends on @pitlane/crawler by pkg.pr.new tarball URL, which pnpm 11 rejects
+# as an exotic subdependency, and pnpm has no per-package allowlist for it.
+# Remove this setting together with the preview pins before the PR leaves draft.
+blockExoticSubdeps: false

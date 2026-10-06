@@ -3,7 +3,6 @@
   "specifiers": {
     "npm:@electric-sql/pglite-socket@~0.2.7": "0.2.9_@electric-sql+pglite@0.5.6_@electric-sql+pglite-age@0.0.7_@electric-sql+pglite-pg_hashids@0.0.7_@electric-sql+pglite-pg_ivm@0.0.7_@electric-sql+pglite-pg_textsearch@0.0.8_@electric-sql+pglite-pg_uuidv7@0.0.7_@electric-sql+pglite-pgtap@0.0.7_@electric-sql+pglite-pgvector@0.0.7",
     "npm:@electric-sql/pglite@~0.5.4": "0.5.6",
-    "npm:@pitlane/dev@0.7": "0.7.0_remix@3.0.0_vite@8.2.2_@emnapi+core@1.11.2_@emnapi+runtime@1.11.2_pg@8.23.0",
     "npm:@pitlane/theme@0.5": "0.5.0_remix@3.0.0_@emnapi+core@1.11.2_@emnapi+runtime@1.11.2_pg@8.23.0",
     "npm:@types/deno@*": "2.7.0",
     "npm:@types/node@*": "26.2.0",
@@ -2660,11 +2659,27 @@
     "dependencies": [
       "npm:@electric-sql/pglite-socket@~0.2.7",
       "npm:@electric-sql/pglite@~0.5.4",
-      "npm:@pitlane/dev@0.7",
       "npm:@pitlane/theme@0.5",
       "npm:pg@^8.22.0",
       "npm:remix@3.0.0",
       "npm:vite@^8.1.5"
-    ]
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:@electric-sql/pglite-socket@~0.2.7",
+        "npm:@electric-sql/pglite@~0.5.4",
+        "npm:@pitlane/theme@0.5",
+        "npm:@types/deno@^2.7.0",
+        "npm:@types/node@^26.2.0",
+        "npm:@types/pg@^8.23.1",
+        "npm:eslint-plugin-perfectionist@^5.10.1",
+        "npm:oxfmt@0.47",
+        "npm:oxlint-tsgolint@^7.0.2001",
+        "npm:oxlint@^1.62.0",
+        "npm:pg@^8.22.0",
+        "npm:remix@3.0.0",
+        "npm:vite@^8.1.5"
+      ]
+    }
   }
 }

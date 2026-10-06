@@ -15,3 +15,7 @@ minimumReleaseAgeExclude:
     - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"
+
+# TEMPORARY: the @pitlane/dev preview pin pulls @pitlane/crawler by tarball URL,
+# which pnpm 11 otherwise rejects. Remove with the pin before release.
+blockExoticSubdeps: false

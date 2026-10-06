@@ -1,7 +1,6 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@pitlane/dev@0.7": "0.7.0_remix@3.0.0_vite@8.2.2_@emnapi+core@1.11.2_@emnapi+runtime@1.11.2",
     "npm:@pitlane/theme@0.5": "0.5.0_remix@3.0.0_@emnapi+core@1.11.2_@emnapi+runtime@1.11.2",
     "npm:@types/node@*": "26.2.0",
     "npm:eslint-plugin-perfectionist@*": "5.10.1_eslint@10.9.0_typescript@7.0.2",
@@ -2507,10 +2506,21 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@pitlane/dev@0.7",
       "npm:@pitlane/theme@0.5",
       "npm:remix@3.0.0",
       "npm:vite@^8.1.5"
-    ]
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:@pitlane/theme@0.5",
+        "npm:@types/node@^26.2.0",
+        "npm:eslint-plugin-perfectionist@^5.10.1",
+        "npm:oxfmt@0.47",
+        "npm:oxlint-tsgolint@^7.0.2001",
+        "npm:oxlint@^1.62.0",
+        "npm:remix@3.0.0",
+        "npm:vite@^8.1.5"
+      ]
+    }
   }
 }
