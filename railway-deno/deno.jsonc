@@ -1,11 +1,13 @@
 {
-    // PREVIEW ONLY — revert before release. @pitlane/dev is pinned to the
-    // pkg.pr.new build in package.json until the release it needs publishes.
+    // PREVIEW ONLY — revert before release. @pitlane/vite-plugin-remix and
+    // @pitlane/assets are pinned to pkg.pr.new builds in package.json until the
+    // releases they need publish.
     // Deno cannot install tarball URLs, so `npm ci` fills node_modules from
     // package.json and package-lock.json, and Deno resolves every package from
     // there in manual mode; `deno install` and `deno task tooling` do not apply
-    // meanwhile. To revert: restore "auto" and the
-    // `npm:@pitlane/dev@<release>` import, delete package.json and
+    // meanwhile. To revert: restore "auto", add
+    // `npm:@pitlane/vite-plugin-remix@<release>` and
+    // `npm:@pitlane/assets@<release>` imports, delete package.json and
     // package-lock.json, and re-run `deno install` and `deno task tooling`.
     "nodeModulesDir": "manual",
     "imports": {

@@ -1,5 +1,4 @@
-# The two Deno templates (railway-deno, deno-deploy) are Deno-native — no
-# package.json — and install with `deno install` instead of pnpm.
+# Deno templates use npm for preview tarballs and remain outside this workspace.
 packages:
     - cloudflare
     - github-pages
@@ -25,14 +24,20 @@ allowBuilds:
 minimumReleaseAgeExclude:
     - "@pitlane/crawler"
     - "@pitlane/data-table-d1"
-    - "@pitlane/dev"
+    - "@pitlane/assets"
+    - "@pitlane/vite-plugin-fetch-server"
+    - "@pitlane/vite-plugin-remix"
     - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"
 
-# TEMPORARY while templates PR #12 is a draft: @pitlane/dev is pinned to the
-# pkg.pr.new preview of pitlane@24f908f until 0.8.0 publishes. That preview
-# depends on @pitlane/crawler by pkg.pr.new tarball URL, which pnpm 11 rejects
-# as an exotic subdependency, and pnpm has no per-package allowlist for it.
+# TEMPORARY while templates PR #12 is a draft: the package candidates depend
+# on each other through pkg.pr.new URLs, which pnpm rejects as exotic
+# subdependencies. These pins are replaced only after the release is installable.
 # Remove this setting together with the preview pins before the PR leaves draft.
 blockExoticSubdeps: false
+
+# The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
+peerDependencyRules:
+    allowedVersions:
+        vite: "1"

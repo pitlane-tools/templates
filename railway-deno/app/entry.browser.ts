@@ -1,5 +1,5 @@
+import { revalidate } from "@pitlane/vite-plugin-remix/hmr";
 import { run } from "remix/component";
-import { revalidate } from "@pitlane/dev/hmr";
 
 let app = run({
     async loadModule(moduleUrl, exportName) {
@@ -16,7 +16,7 @@ let app = run({
     },
 });
 
-// During `vite dev`, @pitlane/dev broadcasts `server:update` when a
+// During `vite dev`, @pitlane/vite-plugin-remix broadcasts `server:update` when a
 // server-only module changes; `revalidate` reloads the top frame in place.
 // Builds drop this branch.
 if (import.meta.hot) {

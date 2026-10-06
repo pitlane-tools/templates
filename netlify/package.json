@@ -6,6 +6,7 @@
         "#app/*": "./app/*"
     },
     "dependencies": {
+        "@pitlane/assets": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/assets@1e822c63f5d284d1a8b68508d9221a2527a46267",
         "@pitlane/theme": "^0.5.0",
         "pg": "^8.22.0",
         "remix": "3.0.0"
@@ -14,7 +15,7 @@
         "@electric-sql/pglite": "^0.5.4",
         "@electric-sql/pglite-socket": "^0.2.7",
         "@netlify/vite-plugin": "^2.12.9",
-        "@pitlane/dev": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/dev@24f908f",
+        "@pitlane/vite-plugin-remix": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/vite-plugin-remix@1e822c63f5d284d1a8b68508d9221a2527a46267",
         "@types/node": "^25.5.0",
         "@types/pg": "^8.20.0",
         "eslint-plugin-perfectionist": "^5.8.0",

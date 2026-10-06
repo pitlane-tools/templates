@@ -56,7 +56,7 @@ Guest book entries live in the visitor's own browser through `AppStorage`
 ([app/data/app-storage.ts](./app/data/app-storage.ts)), a small
 schema-validated KV layer over IndexedDB.
 
-`vite.config.ts` runs [`@pitlane/dev`](https://pitlane.tools/package/dev/)'s
+`vite.config.ts` runs [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix/)'s
 `remix()` plugin in SPA mode (`server: false`). There is no server to build here,
 so the plugin contributes one thing: component hot module replacement. Editing
 a component swaps it in place and keeps live state — a half-typed guest book

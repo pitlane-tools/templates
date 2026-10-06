@@ -1,6 +1,6 @@
 # Pitlane — Railway Template (Bun)
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running on [Bun](https://bun.com) with [`bun:sqlite`](https://bun.com/docs/runtime/sqlite), containerized for [Railway](https://railway.com).
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix) and [`@pitlane/assets`](https://pitlane.tools/package/assets), running on [Bun](https://bun.com) with [`bun:sqlite`](https://bun.com/docs/runtime/sqlite), containerized for [Railway](https://railway.com).
 
 | Runtime | Package manager | Database | Deploys to                                 |
 | ------- | --------------- | -------- | ------------------------------------------ |

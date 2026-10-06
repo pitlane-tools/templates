@@ -37,15 +37,14 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            # Until @pitlane/dev is published, installing the template fails on
-            # npm — skip gracefully; the guard self-deactivates at publish.
-            - name: Check @pitlane/dev is published
+            # Avoid deploying until the renamed integration is on npm.
+            - name: Check Remix integration is published
               id: published
               run: |
-                  if npm view @pitlane/dev version >/dev/null 2>&1; then
+                  if npm view @pitlane/vite-plugin-remix version >/dev/null 2>&1; then
                       echo "ok=true" >> "$GITHUB_OUTPUT"
                   else
-                      echo "::notice::@pitlane/dev is not on npm yet — skipping the demo deploy."
+                      echo "::notice::@pitlane/vite-plugin-remix is not on npm yet — skipping the demo deploy."
                       echo "ok=false" >> "$GITHUB_OUTPUT"
                   fi
 

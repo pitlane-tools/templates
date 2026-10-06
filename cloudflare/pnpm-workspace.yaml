@@ -11,13 +11,22 @@ allowBuilds:
 # Trust Remix and Pitlane's own packages at any release age; everything else
 # keeps pnpm's default minimum-release-age protection.
 minimumReleaseAgeExclude:
+    - "@pitlane/assets"
     - "@pitlane/crawler"
     - "@pitlane/data-table-d1"
-    - "@pitlane/dev"
     - "@pitlane/theme"
+    - "@pitlane/vite-plugin-fetch-server"
+    - "@pitlane/vite-plugin-remix"
     - "@remix-run/*"
     - "remix"
 
-# TEMPORARY: the @pitlane/dev preview pin pulls @pitlane/crawler by tarball URL,
-# which pnpm 11 otherwise rejects. Remove with the pin before release.
+# TEMPORARY: the @pitlane/vite-plugin-remix preview pin pulls its Pitlane
+# dependencies (@pitlane/assets, @pitlane/vite-plugin-fetch-server,
+# @pitlane/crawler) by tarball URL, which pnpm 11 otherwise rejects. Remove
+# with the pins before release.
 blockExoticSubdeps: false
+
+# The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
+peerDependencyRules:
+    allowedVersions:
+        vite: "1"

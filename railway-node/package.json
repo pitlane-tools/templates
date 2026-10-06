@@ -6,11 +6,12 @@
         "#app/*": "./app/*"
     },
     "dependencies": {
+        "@pitlane/assets": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/assets@1e822c63f5d284d1a8b68508d9221a2527a46267",
         "@pitlane/theme": "^0.5.0",
         "remix": "3.0.0"
     },
     "devDependencies": {
-        "@pitlane/dev": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/dev@24f908f",
+        "@pitlane/vite-plugin-remix": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/vite-plugin-remix@1e822c63f5d284d1a8b68508d9221a2527a46267",
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
