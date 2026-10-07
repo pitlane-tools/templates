@@ -18,12 +18,6 @@ minimumReleaseAgeExclude:
     - "@remix-run/*"
     - "remix"
 
-# TEMPORARY: the @pitlane/vite-plugin-remix preview pin pulls its Pitlane
-# dependencies (@pitlane/assets, @pitlane/vite-plugin-fetch-server,
-# @pitlane/crawler) by tarball URL, which pnpm 11 otherwise rejects. Remove
-# with the pins before release.
-blockExoticSubdeps: false
-
 # The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
 peerDependencyRules:
     allowedVersions:

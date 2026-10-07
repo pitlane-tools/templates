@@ -30,12 +30,12 @@ Each template ships a GitHub Actions deploy workflow following the [Pitlane depl
 ## Conventions
 
 - **One app, many platforms.** The guest book (schema-validated form writes, streamed HTML, a hydrated island) is identical everywhere; only the database middleware and the deploy surface change.
-- **Vite+ canonical.** Templates use [Vite+](https://viteplus.dev) (`vp`) for dev, build, tasks, formatting, and linting — except the two Deno templates, which run through `deno.jsonc`. During this preview, the Deno templates use npm to install package candidates. Their release checklist restores Deno-native dependency installation.
+- **Vite+ canonical.** Templates use [Vite+](https://viteplus.dev) (`vp`) for dev, build, tasks, formatting, and linting — except the two Deno templates, which install dependencies and run tasks through `deno.jsonc`.
 - **PostgreSQL templates develop against PGlite.** `netlify`, `vercel`, and `deno-deploy` start a project-local [PGlite](https://pglite.dev) socket server on `vp dev` / `deno task dev` and inject `DATABASE_URL` — no Docker, no local Postgres — while production always points at a real PostgreSQL server through the same migrations and client.
 
 ## Development
 
-This is a pnpm workspace. The Deno templates opt out and document their preview installation separately.
+This is a pnpm workspace. The Deno templates opt out and document their Deno-native installation separately.
 
 ```sh
 vp install
@@ -43,7 +43,7 @@ cd railway-node
 vp build
 ```
 
-CI builds every template against the package versions pinned in its manifest. The companion migration stays in draft with immutable package previews until the new packages are released and installable. The [deploy-demo](./.github/workflows/deploy-demo.yml) workflow redeploys the [live Cloudflare demo](https://guestbook.pitlane.tools) when changes reach the default branch.
+CI builds every template against published package versions. The [deploy-demo](./.github/workflows/deploy-demo.yml) workflow redeploys the [live Cloudflare demo](https://guestbook.pitlane.tools) when changes reach the default branch.
 
 ## License
 

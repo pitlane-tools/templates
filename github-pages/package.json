@@ -11,7 +11,7 @@
         "remix": "3.0.0"
     },
     "devDependencies": {
-        "@pitlane/vite-plugin-remix": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/vite-plugin-remix@1e822c63f5d284d1a8b68508d9221a2527a46267",
+        "@pitlane/vite-plugin-remix": "^0.8.0",
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",

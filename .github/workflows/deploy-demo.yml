@@ -37,34 +37,15 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            # Avoid deploying until the renamed integration is on npm.
-            - name: Check Remix integration is published
-              id: published
-              run: |
-                  if npm view @pitlane/vite-plugin-remix version >/dev/null 2>&1; then
-                      echo "ok=true" >> "$GITHUB_OUTPUT"
-                  else
-                      echo "::notice::@pitlane/vite-plugin-remix is not on npm yet — skipping the demo deploy."
-                      echo "ok=false" >> "$GITHUB_OUTPUT"
-                  fi
-
             - uses: pnpm/action-setup@v4
-              if: steps.published.outputs.ok == 'true'
 
             - uses: actions/setup-node@v4
-              if: steps.published.outputs.ok == 'true'
               with:
                   node-version: 24
 
             - run: pnpm install --no-frozen-lockfile
-              if: steps.published.outputs.ok == 'true'
-              env:
-                  # See ci.yml: the nested prepare install for the git-hosted
-                  # remix package cannot run frozen.
-                  npm_config_frozen_lockfile: "false"
 
             - name: Point wrangler at the demo database
-              if: steps.published.outputs.ok == 'true'
               working-directory: cloudflare
               run: |
                   sed -i 's/"database_id": "local"/"database_id": "'"$D1_DATABASE_ID"'"/' wrangler.jsonc
@@ -72,19 +53,15 @@ jobs:
                   D1_DATABASE_ID: ${{ vars.CLOUDFLARE_D1_DATABASE_ID }}
 
             - run: pnpm exec vp build
-              if: steps.published.outputs.ok == 'true'
               working-directory: cloudflare
 
             - run: pnpm exec vp run db:migrate:remote
-              if: steps.published.outputs.ok == 'true'
               working-directory: cloudflare
 
             - run: pnpm exec wrangler deploy
-              if: steps.published.outputs.ok == 'true'
               working-directory: cloudflare
 
             - name: Smoke test the deployment
-              if: steps.published.outputs.ok == 'true'
               run: |
                   URL="https://guestbook.pitlane.tools"
                   STATUS=$(curl -sm 20 -o /dev/null -w "%{http_code}" "$URL/")

@@ -18,10 +18,6 @@ minimumReleaseAgeExclude:
     - "@remix-run/*"
     - "remix"
 
-# TEMPORARY: preview dependencies use pkg.pr.new tarball URLs.
-# Remove with the preview pins before release.
-blockExoticSubdeps: false
-
 # The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
 peerDependencyRules:
     allowedVersions:

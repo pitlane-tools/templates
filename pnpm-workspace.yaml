@@ -1,4 +1,3 @@
-# Deno templates use npm for preview tarballs and remain outside this workspace.
 packages:
     - cloudflare
     - github-pages
@@ -30,12 +29,6 @@ minimumReleaseAgeExclude:
     - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"
-
-# TEMPORARY while templates PR #12 is a draft: the package candidates depend
-# on each other through pkg.pr.new URLs, which pnpm rejects as exotic
-# subdependencies. These pins are replaced only after the release is installable.
-# Remove this setting together with the preview pins before the PR leaves draft.
-blockExoticSubdeps: false
 
 # The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
 peerDependencyRules:
