@@ -34,10 +34,6 @@
                 "tsx": "always",
             },
         ],
-        // `../entry.browser.ts?assets=client` is a virtual module that
-        // @pitlane/dev materialises during the build. Its default export does
-        // not exist in the source file, so no static resolver can see it.
-        "import/default": "off",
         // The templates declare with `let` throughout.
         "eslint/prefer-const": "off",
     },

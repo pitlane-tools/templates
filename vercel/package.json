@@ -6,13 +6,15 @@
         "#app/*": "./app/*"
     },
     "dependencies": {
+        "@pitlane/assets": "^0.1.0",
+        "@pitlane/theme": "^0.5.0",
         "pg": "^8.22.0",
-        "pitlane": "^1.0.0-alpha.2",
         "remix": "3.0.0"
     },
     "devDependencies": {
         "@electric-sql/pglite": "^0.5.4",
         "@electric-sql/pglite-socket": "^0.2.7",
+        "@pitlane/vite-plugin-remix": "^0.8.0",
         "@types/node": "^25.5.0",
         "@types/pg": "^8.20.0",
         "eslint-plugin-perfectionist": "^5.8.0",

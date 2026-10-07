@@ -1,6 +1,6 @@
-import type { TVAProps } from "pitlane/theme";
+import type { TVAProps } from "@pitlane/theme";
 
-import { tva } from "pitlane/theme";
+import { tva } from "@pitlane/theme";
 
 import { t } from "../theme.ts";
 

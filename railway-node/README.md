@@ -1,6 +1,6 @@
 # Pitlane — Railway Template (Node)
 
-A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running on Node.js with [`node:sqlite`](https://nodejs.org/api/sqlite.html), containerized for [Railway](https://railway.com).
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix/) and [`@pitlane/assets`](https://pitlane.tools/package/assets/), running on Node.js with [`node:sqlite`](https://nodejs.org/api/sqlite.html), containerized for [Railway](https://railway.com).
 
 | Runtime | Package manager | Database      | Deploys to                                 |
 | ------- | --------------- | ------------- | ------------------------------------------ |

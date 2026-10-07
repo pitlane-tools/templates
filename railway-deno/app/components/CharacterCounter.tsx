@@ -1,4 +1,4 @@
-import { css } from "pitlane/theme";
+import { css } from "@pitlane/theme";
 import { clientEntry, on } from "remix/component";
 
 import { field } from "../styles/recipes.ts";

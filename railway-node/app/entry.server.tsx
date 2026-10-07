@@ -1,11 +1,12 @@
 import { asyncContext } from "remix/middleware/async-context";
 import { formData } from "remix/middleware/form-data";
+import { render } from "remix/middleware/render";
 import { staticFiles } from "remix/middleware/static";
 import { type MiddlewareContext, createRouter } from "remix/router";
 
 import guestBook from "#app/actions/guest-book.tsx";
+import { assets } from "#app/assets.ts";
 import { loadDatabase } from "#app/middleware/database.ts";
-import { render } from "#app/middleware/render.tsx";
 import { routes } from "#app/routes.ts";
 
 type AppContext = MiddlewareContext<
@@ -25,7 +26,7 @@ export let router = createRouter<AppContext>({
         formData(),
         asyncContext(),
         loadDatabase(),
-        render(),
+        render({ assets }),
     ],
 });
 
