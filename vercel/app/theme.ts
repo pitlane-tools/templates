@@ -1,5 +1,5 @@
-import { createTheme } from "@pitlane/theme";
-import * as s from "@pitlane/theme/schema";
+import { createTheme } from "pitlane/theme";
+import * as s from "pitlane/theme/schema";
 
 /**
  * App-owned design tokens, installed on the document as CSS custom properties

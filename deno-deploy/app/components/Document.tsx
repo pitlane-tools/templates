@@ -1,4 +1,4 @@
-import { css } from "@pitlane/theme";
+import { css } from "pitlane/theme";
 import { Frame } from "remix/component";
 import { ImportMap } from "remix/component/server";
 import { getContext } from "remix/middleware/async-context";

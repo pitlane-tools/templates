@@ -1,4 +1,4 @@
-import { css } from "@pitlane/theme";
+import { css } from "pitlane/theme";
 import { type Handle } from "remix/component";
 
 import type { GuestBookEntry } from "../data/schemas.ts";

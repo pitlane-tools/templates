@@ -6,14 +6,11 @@
         "#app/*": "./app/*"
     },
     "dependencies": {
-        "@pitlane/assets": "^0.1.0",
-        "@pitlane/data-table-d1": "^0.3.0",
-        "@pitlane/theme": "^0.5.0",
+        "pitlane": "^1.0.0-alpha.2",
         "remix": "3.0.0"
     },
     "devDependencies": {
         "@cloudflare/vite-plugin": "^1.31.0",
-        "@pitlane/vite-plugin-remix": "^0.8.0",
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",

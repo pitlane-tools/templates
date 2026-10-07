@@ -1,6 +1,6 @@
 # Pitlane — Netlify Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix) and [`@pitlane/assets`](https://pitlane.tools/package/assets), running on [Netlify](https://www.netlify.com) — static client from the CDN, SSR through one Netlify Function — with PostgreSQL via [Netlify DB](https://docs.netlify.com/build/data-and-storage/netlify-db/).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running on [Netlify](https://www.netlify.com) — static client from the CDN, SSR through one Netlify Function — with PostgreSQL via [Netlify DB](https://docs.netlify.com/build/data-and-storage/netlify-db/). The build runs `pitlane/vite-plugin-remix`; browser scripts and stylesheets resolve through `pitlane/assets`.
 
 | Runtime                  | Package manager | Database   | Deploys to                         |
 | ------------------------ | --------------- | ---------- | ---------------------------------- |
