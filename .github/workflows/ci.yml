@@ -25,22 +25,7 @@ jobs:
               with:
                   node-version: 24
 
-            # pnpm/action-setup installs pnpm under
-            # ~/setup-pnpm/node_modules/.bin and derives its store from there,
-            # so the default store path contains "node_modules". The
-            # github-pages template's git-hosted remix preview is unpacked into
-            # that store and prepared by running its own
-            # scripts/postinstall.ts, and Node refuses to strip types from any
-            # .ts file under a node_modules directory — every job died on
-            # ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING. It has to be the CLI
-            # flag: pnpm 11 ignores npm_config_store_dir and PNPM_STORE_DIR.
             - run: pnpm install --no-frozen-lockfile --store-dir "$RUNNER_TEMP/pnpm-store"
-              env:
-                  # The github-pages template installs remix from a preview
-                  # build prepared out of a git checkout whose own lockfile is
-                  # intentionally out of date; stop CI's frozen-lockfile default
-                  # from leaking into that nested install.
-                  npm_config_frozen_lockfile: "false"
 
             - run: pnpm --filter ./${{ matrix.template }} exec vp build
 
@@ -60,9 +45,6 @@ jobs:
               with:
                   deno-version: v2.x
 
-            # CI validates @pitlane/dev releases the moment they publish, so
-            # Deno's minimum-dependency-age gate (24h) is disabled here only —
-            # scaffolded apps keep the default supply-chain protection.
             - run: deno install --allow-scripts --minimum-dependency-age=0
 
             - run: deno task build
@@ -98,12 +80,7 @@ jobs:
               with:
                   node-version: 24
 
-            # See the node-templates install step for both settings: the nested
-            # prepare install for git-hosted remix cannot run frozen, and its
-            # postinstall cannot run from a store under node_modules.
             - run: pnpm install --no-frozen-lockfile --store-dir "$RUNNER_TEMP/pnpm-store"
-              env:
-                  npm_config_frozen_lockfile: "false"
 
             - run: node db/migrate.ts
               working-directory: vercel

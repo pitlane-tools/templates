@@ -11,7 +11,14 @@ allowBuilds:
 # keeps pnpm's default minimum-release-age protection.
 minimumReleaseAgeExclude:
     - "@pitlane/crawler"
-    - "@pitlane/dev"
+    - "@pitlane/assets"
+    - "@pitlane/vite-plugin-fetch-server"
+    - "@pitlane/vite-plugin-remix"
     - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"
+
+# The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
+peerDependencyRules:
+    allowedVersions:
+        vite: "1"

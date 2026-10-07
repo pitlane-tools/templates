@@ -1,6 +1,6 @@
 # Pitlane — Deno Deploy Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix/) and [`@pitlane/assets`](https://pitlane.tools/package/assets/), running Deno-native — `deno.jsonc` holds every dependency and task, there is no `package.json` — on [Deno Deploy](https://deno.com/deploy) with PostgreSQL via [`remix/data-table`](https://remix.run).
 
 | Runtime | Package manager | Database   | Deploys to                             |
 | ------- | --------------- | ---------- | -------------------------------------- |

@@ -1,5 +1,3 @@
-# The two Deno templates (railway-deno, deno-deploy) are Deno-native — no
-# package.json — and install with `deno install` instead of pnpm.
 packages:
     - cloudflare
     - github-pages
@@ -25,7 +23,14 @@ allowBuilds:
 minimumReleaseAgeExclude:
     - "@pitlane/crawler"
     - "@pitlane/data-table-d1"
-    - "@pitlane/dev"
+    - "@pitlane/assets"
+    - "@pitlane/vite-plugin-fetch-server"
+    - "@pitlane/vite-plugin-remix"
     - "@pitlane/theme"
     - "@remix-run/*"
     - "remix"
+
+# The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
+peerDependencyRules:
+    allowedVersions:
+        vite: "1"

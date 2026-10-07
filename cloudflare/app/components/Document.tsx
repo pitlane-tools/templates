@@ -1,16 +1,13 @@
-import { mergeAssets } from "@pitlane/dev/runtime";
 import { css } from "@pitlane/theme";
 import { Frame } from "remix/component";
+import { ImportMap } from "remix/component/server";
 import { getContext } from "remix/middleware/async-context";
 
-import clientAssets from "#app/entry.browser.ts?assets=client";
-import serverAssets from "#app/entry.server.tsx?assets=ssr";
-import styles from "#app/styles/preflight.css?url";
+import { scriptEntry, stylesheetHref, stylesheets } from "#app/assets.ts";
 import { t, Theme } from "#app/theme.ts";
 
 export function Document() {
     let { url } = getContext();
-    let assets = mergeAssets(clientAssets, serverAssets);
 
     return () => (
         <html
@@ -28,15 +25,16 @@ export function Document() {
                 <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
 
                 <Theme />
-                <link href={styles} rel="stylesheet" />
-                {assets.css.map(attrs => (
-                    <link key={attrs.href} {...attrs} rel="stylesheet" />
+                <link href={stylesheetHref} rel="stylesheet" />
+                {stylesheets.map(href => (
+                    <link key={href} href={href} rel="stylesheet" />
                 ))}
 
-                <script async src={clientAssets.entry} type="module" />
-                {assets.js.map(attrs => (
-                    <link key={attrs.href} {...attrs} rel="modulepreload" />
+                <ImportMap value={scriptEntry.importMap} />
+                {scriptEntry.preloads.map(href => (
+                    <link key={href} href={href} rel="modulepreload" />
                 ))}
+                <script async src={scriptEntry.href} type="module" />
             </head>
             <body>
                 <Frame name="welcome" src={url.toString()} />

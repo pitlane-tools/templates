@@ -1,6 +1,6 @@
 # Pitlane — Vercel Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/dev`](https://pitlane.tools/package/dev), packaged for [Vercel](https://vercel.com) by [Nitro](https://nitro.build), with PostgreSQL via [`remix/data-table`](https://remix.run).
+A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix) and [`@pitlane/assets`](https://pitlane.tools/package/assets), packaged for [Vercel](https://vercel.com) by [Nitro](https://nitro.build), with PostgreSQL via [`remix/data-table`](https://remix.run).
 
 | Runtime                 | Package manager | Database   | Deploys to                   |
 | ----------------------- | --------------- | ---------- | ---------------------------- |
