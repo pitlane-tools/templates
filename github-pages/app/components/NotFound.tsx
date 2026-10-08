@@ -1,4 +1,4 @@
-import { css } from "@pitlane/theme";
+import { css } from "pitlane/theme";
 
 import { routes } from "#app/routes.ts";
 import { t } from "#app/theme.ts";

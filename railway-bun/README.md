@@ -1,6 +1,6 @@
 # Pitlane — Railway Template (Bun)
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix) and [`@pitlane/assets`](https://pitlane.tools/package/assets), running on [Bun](https://bun.com) with [`bun:sqlite`](https://bun.com/docs/runtime/sqlite), containerized for [Railway](https://railway.com).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), running on [Bun](https://bun.com) with [`bun:sqlite`](https://bun.com/docs/runtime/sqlite), containerized for [Railway](https://railway.com). The build runs `pitlane/vite-plugin-remix`; browser scripts and stylesheets resolve through `pitlane/assets`.
 
 | Runtime | Package manager | Database | Deploys to                                 |
 | ------- | --------------- | -------- | ------------------------------------------ |
@@ -30,6 +30,10 @@ vp dev      # migrate the SQLite database, then start the dev server under Bun
 ```
 
 The dev server reads `DATABASE_URL` from [.env](./.env) (defaults to `db/data.db`). The app talks to SQLite through `bun:sqlite` — same `remix/data-table` adapter as the Node template, different driver import.
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Commands
 

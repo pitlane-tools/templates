@@ -1,6 +1,6 @@
 # Pitlane — Vercel Template
 
-A [Remix 3](https://remix.run) guest book starter built with [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix) and [`@pitlane/assets`](https://pitlane.tools/package/assets), packaged for [Vercel](https://vercel.com) by [Nitro](https://nitro.build), with PostgreSQL via [`remix/data-table`](https://remix.run).
+A [Remix 3](https://remix.run) guest book starter built with [`pitlane`](https://pitlane.tools/guides), packaged for [Vercel](https://vercel.com) by [Nitro](https://nitro.build), with PostgreSQL via [`remix/data-table`](https://remix.run). The build runs `pitlane/vite-plugin-remix`; browser scripts and stylesheets resolve through `pitlane/assets`.
 
 | Runtime                 | Package manager | Database   | Deploys to                   |
 | ----------------------- | --------------- | ---------- | ---------------------------- |
@@ -34,6 +34,10 @@ irm https://vite.plus/ps1 | iex
 vp install # install dependencies
 vp dev     # start PGlite + migrate + dev server
 ```
+
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
 
 ## Database
 

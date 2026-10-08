@@ -35,6 +35,10 @@ vp install # install dependencies
 vp dev     # start the dev server
 ```
 
+## Documentation for coding agents
+
+After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.
+
 ## Architecture
 
 The router is an ordinary Remix fetch router. The `render()` middleware from
@@ -56,7 +60,7 @@ Guest book entries live in the visitor's own browser through `AppStorage`
 ([app/data/app-storage.ts](./app/data/app-storage.ts)), a small
 schema-validated KV layer over IndexedDB.
 
-`vite.config.ts` runs [`@pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix/)'s
+`vite.config.ts` runs [`pitlane/vite-plugin-remix`](https://pitlane.tools/package/vite-plugin-remix/)'s
 `remix()` plugin in SPA mode (`server: false`). There is no server to build here,
 so the plugin contributes one thing: component hot module replacement. Editing
 a component swaps it in place and keeps live state — a half-typed guest book

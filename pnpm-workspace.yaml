@@ -21,13 +21,9 @@ allowBuilds:
 # Scaffolded apps carry the same exclusion in their own pnpm-workspace.yaml —
 # a Pitlane template trusts these packages at any age.
 minimumReleaseAgeExclude:
-    - "@pitlane/crawler"
-    - "@pitlane/data-table-d1"
-    - "@pitlane/assets"
-    - "@pitlane/vite-plugin-fetch-server"
-    - "@pitlane/vite-plugin-remix"
-    - "@pitlane/theme"
+    - "@pitlane/*"
     - "@remix-run/*"
+    - "pitlane"
     - "remix"
 
 # The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
