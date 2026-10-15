@@ -25,10 +25,11 @@ jobs:
 
             - run: vp install --frozen-lockfile
 
+            - run: vp run db:migrate:remote
+
             # `vp build` writes Cloudflare's Build Output to .cloudflare/output;
             # `cf build` would run `vite build`, and this project's Vite is Vite+.
+            # Build last: loading the Vite config clears that directory.
             - run: vp build
-
-            - run: vp run db:migrate:remote
 
             - run: vpx cf deploy --prebuilt --mode production

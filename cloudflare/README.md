@@ -75,19 +75,20 @@ Follow the [Cloudflare deploy guide](https://pitlane.tools/deploy/cloudflare). S
 2. Create a Cloudflare API token with Workers and D1 edit permissions and save it as the
    `CLOUDFLARE_API_TOKEN` repository secret on GitHub, and your account id as the
    `CLOUDFLARE_ACCOUNT_ID` repository variable.
-3. Push to `main`: CI builds, applies migrations to the remote D1, and deploys the build
+3. Push to `main`: CI applies migrations to the remote D1, builds, and deploys the build
    with `cf deploy --prebuilt`.
 
 To deploy from your machine instead:
 
 ```sh
-vp build
 vp run db:migrate:remote
+vp build
 vpx cf deploy --prebuilt --mode production
 ```
 
 The Vite build always runs in your CI (or locally) — never on Cloudflare. `vp build` writes
 Cloudflare's Build Output to `.cloudflare/output`, which is what `cf deploy --prebuilt`
-uploads; `--mode production` is the mode that build recorded. Build with Vite+ rather than
-`cf build`: `cf build` shells out to `vite build`, and this project's Vite is Vite+, whose
-command is `vp`.
+uploads; `--mode production` is the mode that build recorded. Build last: loading the Vite
+config clears that directory, so `vp check` between the build and the deploy leaves nothing
+to upload. Build with Vite+ rather than `cf build`: `cf build` shells out to `vite build`,
+and this project's Vite is Vite+, whose command is `vp`.

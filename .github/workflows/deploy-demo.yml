@@ -53,10 +53,11 @@ jobs:
               env:
                   D1_DATABASE_ID: ${{ vars.CLOUDFLARE_D1_DATABASE_ID }}
 
-            - run: pnpm exec vp build
+            - run: pnpm exec vp run db:migrate:remote
               working-directory: cloudflare
 
-            - run: pnpm exec vp run db:migrate:remote
+            # Build last: loading the Vite config clears .cloudflare/output.
+            - run: pnpm exec vp build
               working-directory: cloudflare
 
             - run: pnpm exec cf deploy --prebuilt --mode production
