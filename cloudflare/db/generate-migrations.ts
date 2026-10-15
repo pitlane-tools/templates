@@ -3,8 +3,9 @@ import { join } from "node:path";
 
 const MIGRATIONS_DIR = "db/migrations";
 
-// Wrangler reads flat `<name>.sql` files from `migrations_dir`. Our source migrations
-// are `<timestamp>_<slug>/up.sql`, so mirror each `up.sql` into a sibling `<timestamp>_<slug>.sql`.
+// `cf d1 migrations apply` reads flat `<name>.sql` files from `--dir`. Our source
+// migrations are `<timestamp>_<slug>/up.sql`, so mirror each `up.sql` into a sibling
+// `<timestamp>_<slug>.sql`.
 for (let entry of readdirSync(MIGRATIONS_DIR, { withFileTypes: true })) {
     if (entry.isFile() && entry.name.endsWith(".sql")) {
         unlinkSync(join(MIGRATIONS_DIR, entry.name));

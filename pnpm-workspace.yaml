@@ -21,8 +21,10 @@ allowBuilds:
 # Scaffolded apps carry the same exclusion in their own pnpm-workspace.yaml —
 # a Pitlane template trusts these packages at any age.
 minimumReleaseAgeExclude:
+    - "@cloudflare/*"
     - "@pitlane/*"
     - "@remix-run/*"
+    - "cf"
     - "pitlane"
     - "remix"
 

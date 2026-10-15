@@ -3,7 +3,7 @@ dist
 *.tgz
 *.local
 .DS_Store
-.wrangler
+.cloudflare
 .netlify
 .vercel
 .output

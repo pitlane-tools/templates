@@ -8,11 +8,15 @@ allowBuilds:
     esbuild: false
     sharp: false
 
-# Trust Remix and Pitlane's own packages at any release age; everything else
-# keeps pnpm's default minimum-release-age protection.
+# Trust Remix, Pitlane, and Cloudflare's own packages at any release age;
+# everything else keeps pnpm's default minimum-release-age protection. `cf` and
+# `@cloudflare/vite-plugin` are pinned to exact betas that publish often, and a
+# release-age gate on an exact pin has nothing older to fall back to.
 minimumReleaseAgeExclude:
+    - "@cloudflare/*"
     - "@pitlane/*"
     - "@remix-run/*"
+    - "cf"
     - "pitlane"
     - "remix"
 

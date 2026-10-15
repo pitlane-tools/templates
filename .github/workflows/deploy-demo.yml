@@ -7,9 +7,9 @@
 # Wiring (already set on this repository):
 #   secret CLOUDFLARE_API_TOKEN          — Workers + D1 edit permissions
 #   var    CLOUDFLARE_ACCOUNT_ID         — the account to deploy into
-#   var    CLOUDFLARE_D1_DATABASE_ID     — `wrangler d1 create pitlane-cloudflare-db`
+#   var    CLOUDFLARE_D1_DATABASE_ID     — `cf d1 create --name pitlane-cloudflare-db`
 #
-# The template itself ships with `"database_id": "local"`; the real id is
+# The template itself ships with a placeholder database id; the real one is
 # injected here at deploy time so scaffolded apps stay account-agnostic.
 name: Deploy demo
 
@@ -34,6 +34,7 @@ jobs:
         env:
             CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
             CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+            CF_SEND_TELEMETRY: "false"
         steps:
             - uses: actions/checkout@v4
 
@@ -45,10 +46,10 @@ jobs:
 
             - run: pnpm install --no-frozen-lockfile
 
-            - name: Point wrangler at the demo database
+            - name: Point the D1 binding at the demo database
               working-directory: cloudflare
               run: |
-                  sed -i 's/"database_id": "local"/"database_id": "'"$D1_DATABASE_ID"'"/' wrangler.jsonc
+                  sed -i 's/"00000000-0000-4000-8000-000000000000"/"'"$D1_DATABASE_ID"'"/' cloudflare.config.ts
               env:
                   D1_DATABASE_ID: ${{ vars.CLOUDFLARE_D1_DATABASE_ID }}
 
@@ -58,7 +59,7 @@ jobs:
             - run: pnpm exec vp run db:migrate:remote
               working-directory: cloudflare
 
-            - run: pnpm exec wrangler deploy
+            - run: pnpm exec cf deploy --prebuilt --mode production
               working-directory: cloudflare
 
             - name: Smoke test the deployment

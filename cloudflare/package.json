@@ -10,16 +10,16 @@
         "remix": "3.0.0"
     },
     "devDependencies": {
-        "@cloudflare/vite-plugin": "^1.31.0",
+        "@cloudflare/vite-plugin": "2.0.0-beta.v.0",
         "@types/node": "^25.5.0",
+        "cf": "1.0.0-beta.17",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
         "oxlint-tsgolint": "^0.22.1",
         "typescript": "^7.0.2",
         "vite": "npm:@voidzero-dev/vite-plus-core@^1.0.0",
         "vite-plugin-devtools-json": "^1.0.0",
-        "vite-plus": "^1.0.0",
-        "wrangler": "^4.85.0"
+        "vite-plus": "^1.0.0"
     },
     "packageManager": "pnpm@11.17.0"
 }

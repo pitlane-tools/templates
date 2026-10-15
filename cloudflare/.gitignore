@@ -1,5 +1,4 @@
 node_modules
-dist
-.wrangler
+.cloudflare
 *.local
 .DS_Store
