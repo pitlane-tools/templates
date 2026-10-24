@@ -29,28 +29,6 @@ jobs:
 
             - run: pnpm --filter ./${{ matrix.template }} exec vp build
 
-    deno-templates:
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                template: [deno-deploy, railway-deno]
-        defaults:
-            run:
-                working-directory: ${{ matrix.template }}
-        steps:
-            - uses: actions/checkout@v4
-
-            - uses: denoland/setup-deno@v2
-              with:
-                  deno-version: v2.x
-
-            - run: deno install --allow-scripts --minimum-dependency-age=0
-
-            - run: deno task build
-
-            - run: deno task check
-
     # The PGlite dev database is Postgres-in-WASM; also prove the same
     # migrations and queries run against a conventional PostgreSQL server.
     postgres-integration:

@@ -21,8 +21,6 @@ The `cloudflare` template runs live at [guestbook.pitlane.tools](https://guestbo
 | [`vercel`](./vercel)             | Node.js (Vercel Functions)   | PostgreSQL (Neon)             | Vercel             |
 | [`railway-node`](./railway-node) | Node.js                      | SQLite (`node:sqlite`)        | Railway            |
 | [`railway-bun`](./railway-bun)   | Bun                          | SQLite (`bun:sqlite`)         | Railway            |
-| [`railway-deno`](./railway-deno) | Deno                         | SQLite (`node:sqlite`)        | Railway            |
-| [`deno-deploy`](./deno-deploy)   | Deno                         | PostgreSQL (Deno Deploy)      | Deno Deploy        |
 | [`github-pages`](./github-pages) | Browser (`remix/spa`)        | IndexedDB (`idb-keyval`)      | GitHub Pages       |
 
 Each template ships a GitHub Actions deploy workflow following the [Pitlane deploy guides](https://pitlane.tools/deploy/cloudflare): the Vite build runs in your CI, and the platform only ever receives built artifacts.
@@ -30,9 +28,9 @@ Each template ships a GitHub Actions deploy workflow following the [Pitlane depl
 ## Conventions
 
 - **One app, many platforms.** The guest book (schema-validated form writes, streamed HTML, a hydrated island) is identical everywhere; only the database middleware and the deploy surface change.
-- **Official server rendering.** All seven SSR starters pass the `pitlane/assets` resolver to `render({ assets })` from `remix/middleware/render`. Remix owns client-entry resolution and frame rendering; templates do not provide custom resolver hooks. GitHub Pages uses `remix/spa`.
-- **Vite+ canonical.** Templates use [Vite+](https://viteplus.dev) (`vp`) for dev, build, tasks, formatting, and linting — except the two Deno templates, which install dependencies and run tasks through `deno.jsonc`. Templates with a database prepare it in their `dev` task, so start them with `vp run dev` (or its shorthand, `vpr dev`); the built-in `vp dev` starts only Vite's dev server and skips that setup.
-- **PostgreSQL templates develop against PGlite.** `netlify`, `vercel`, and `deno-deploy` start a project-local [PGlite](https://pglite.dev) socket server on `vp run dev` / `deno task dev` and inject `DATABASE_URL` — no Docker, no local Postgres — while production always points at a real PostgreSQL server through the same migrations and client.
+- **Official server rendering.** All five SSR starters pass the `pitlane/assets` resolver to `render({ assets })` from `remix/middleware/render`. Remix owns client-entry resolution and frame rendering; templates do not provide custom resolver hooks. GitHub Pages uses `remix/spa`.
+- **Vite+ canonical.** Templates use [Vite+](https://viteplus.dev) (`vp`) for dev, build, tasks, formatting, and linting. Templates with a database prepare it in their `dev` task, so start them with `vp run dev` (or its shorthand, `vpr dev`); the built-in `vp dev` starts only Vite's dev server and skips that setup.
+- **PostgreSQL templates develop against PGlite.** `netlify` and `vercel` start a project-local [PGlite](https://pglite.dev) socket server on `vp run dev` and inject `DATABASE_URL` — no Docker, no local Postgres — while production always points at a real PostgreSQL server through the same migrations and client.
 
 ## Installed documentation
 
@@ -42,7 +40,7 @@ The umbrella also installs its Vite tooling in production. Apps that need only s
 
 ## Development
 
-This is a pnpm workspace. The Deno templates opt out and document their Deno-native installation separately.
+This is a pnpm workspace.
 
 ```sh
 vp install
