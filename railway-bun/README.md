@@ -26,8 +26,10 @@ curl -fsSL https://bun.com/install | bash # or: brew install oven-sh/bun/bun
 
 ```sh
 bun install # install dependencies (writes bun.lock, used by the Dockerfile)
-vp dev      # migrate the SQLite database, then start the dev server under Bun
+vp run dev  # migrate the SQLite database, then start the dev server under Bun
 ```
+
+`vpr dev` is shorthand for `vp run dev`. Plain `vp dev` starts only the built-in Vite dev server, under Node rather than Bun, and skips the migration, so the first page load fails.
 
 The dev server reads `DATABASE_URL` from [.env](./.env) (defaults to `db/data.db`). The app talks to SQLite through `bun:sqlite` — same `remix/data-table` adapter as the Node template, different driver import.
 
@@ -38,7 +40,7 @@ After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guide
 ## Commands
 
 ```sh
-vp dev              # dev server under Bun (runs db:migrate first)
+vp run dev          # dev server under Bun (runs db:migrate first)
 vp build            # production build
 vp preview          # serve the production build
 vp check            # format, lint, and type-check
