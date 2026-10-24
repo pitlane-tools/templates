@@ -32,8 +32,10 @@ irm https://vite.plus/ps1 | iex
 
 ```sh
 vp install # install dependencies
-vp dev     # start PGlite + migrate + dev server
+vp run dev # start PGlite + migrate + dev server
 ```
+
+`vpr dev` is shorthand for `vp run dev`. Plain `vp dev` starts only the built-in Vite dev server, without PGlite or migrations, so the first page load fails because `DATABASE_URL` is not set.
 
 ## Documentation for coding agents
 
@@ -43,14 +45,14 @@ After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guide
 
 This template uses PostgreSQL in every environment.
 
-For local development, `vp dev` automatically starts a project-local
+For local development, `vp run dev` automatically starts a project-local
 [PGlite](https://pglite.dev) database (PostgreSQL compiled to WebAssembly), applies
 migrations, and starts the app — no Docker, no Postgres install. The app connects
 through a normal `pg` client and the `DATABASE_URL` injected by the dev task; local
 data persists in `.data/postgres`.
 
 ```sh
-vp dev               # persistent local database in .data/postgres
+vp run dev           # persistent local database in .data/postgres
 vp run dev:ephemeral # temporary in-memory database
 vp run db:reset      # delete the persistent local database
 ```
@@ -63,7 +65,7 @@ testing lock contention, pool behavior, or throughput.
 ## Commands
 
 ```sh
-vp dev               # PGlite + migrations + dev server
+vp run dev           # PGlite + migrations + dev server
 vp build             # production build (Nitro portable output)
 vp preview           # preview the production build
 vp check             # format, lint, and type-check

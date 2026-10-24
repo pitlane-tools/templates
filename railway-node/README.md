@@ -32,8 +32,10 @@ irm https://vite.plus/ps1 | iex
 
 ```sh
 vp install # install dependencies
-vp dev     # migrate the SQLite database, then start the dev server
+vp run dev # migrate the SQLite database, then start the dev server
 ```
+
+`vpr dev` is shorthand for `vp run dev`. Plain `vp dev` starts only the built-in Vite dev server and skips the migration, so the first page load fails with `Database execution failed`.
 
 The dev server reads `DATABASE_URL` from [.env](./.env) (defaults to `db/data.db`).
 
@@ -44,7 +46,7 @@ After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guide
 ## Commands
 
 ```sh
-vp dev              # dev server (runs db:migrate first)
+vp run dev          # dev server (runs db:migrate first)
 vp build            # production build
 vp preview          # serve the production build
 vp check            # format, lint, and type-check

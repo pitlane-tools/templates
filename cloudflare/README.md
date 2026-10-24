@@ -37,6 +37,8 @@ vp install # install dependencies
 vp run dev # typegen + local D1 migrations, then start the dev server
 ```
 
+`vpr dev` is shorthand for `vp run dev`. Plain `vp dev` starts only the built-in Vite dev server and skips typegen and the migrations, so the first page load fails with `Database execution failed`.
+
 ## Documentation for coding agents
 
 After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guides and package READMEs for the installed version. [AGENTS.md](./AGENTS.md) and the [Pitlane skill](./.agents/skills/pitlane/SKILL.md) point coding agents there.

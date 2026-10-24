@@ -22,7 +22,7 @@ export default defineConfig({
     },
     run: {
         tasks: {
-            // `vp dev` starts a project-local PGlite (Postgres-in-WASM) database,
+            // `vp run dev` starts a project-local PGlite (Postgres-in-WASM) database,
             // injects its DATABASE_URL, migrates, then runs the app dev server.
             // No Docker or local Postgres install needed.
             dev: {
