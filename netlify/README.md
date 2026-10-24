@@ -89,6 +89,11 @@ handler in three lines: `path: "/*"` routes every request to the function, and
 assets are served from the CDN. Prefer the edge? See the
 [deploy guide](https://pitlane.tools/deploy/netlify) for the Edge Function variant.
 
+The function is production-only. [vite.config.ts](./vite.config.ts) turns off the Netlify
+plugin's functions emulation, so `vp run dev` renders from source through Vite instead of
+loading a build that may be missing or stale. Functions you add to `netlify/functions`
+don't run under `vp run dev`.
+
 ## Deploy
 
 Follow the [Netlify deploy guide](https://pitlane.tools/deploy/netlify). Short version:

@@ -15,8 +15,11 @@ try {
 export default defineConfig({
     // Keep remix()'s default serverHandler here: Netlify's plugin emulates
     // platform primitives around the dev server; SSR itself is still served
-    // by the app's fetch handler.
-    plugins: [remix(), netlify(), devtoolsJson()],
+    // by the app's fetch handler. Functions emulation stays off because the
+    // only function, netlify/functions/server.mjs, wraps the production build
+    // in dist/ssr: in dev it fails to load before a build and serves stale
+    // output after one.
+    plugins: [remix(), netlify({ functions: { enabled: false } }), devtoolsJson()],
     server: {
         port: 1612,
     },
