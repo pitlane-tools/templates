@@ -34,7 +34,7 @@ You will also need a [Cloudflare account](https://dash.cloudflare.com/sign-up) t
 
 ```sh
 vp install # install dependencies
-vp dev     # typegen + local D1 migrations, then start the dev server
+vp run dev # typegen + local D1 migrations, then start the dev server
 ```
 
 ## Documentation for coding agents
@@ -44,14 +44,14 @@ After installing dependencies, `node_modules/pitlane/INDEX.md` indexes the guide
 ## Commands
 
 ```sh
-vp dev                    # dev server (runs typegen and db:migrate first)
-vp build                  # production build
+vp run dev                # dev server (runs typegen and db:migrate first)
+vp build                  # production build, written to .cloudflare/output
 vp preview                # serve the production build in workerd
 vp check                  # format, lint, and type-check
 vp run db:migrate         # apply pending migrations to the local D1
 vp run db:migrate:remote  # apply pending migrations to the remote D1
 vp run db:reset           # remove the local D1 state
-vp run typegen:cloudflare # regenerate worker-configuration.d.ts from wrangler.jsonc
+vp run typegen:cloudflare # regenerate .cloudflare/types from cloudflare.config.ts
 vp run typecheck          # typecheck using tsc
 ```
 
@@ -59,24 +59,36 @@ vp run typecheck          # typecheck using tsc
 
 Follow the [Cloudflare deploy guide](https://pitlane.tools/deploy/cloudflare). Short version:
 
-1. Create the D1 database and copy the printed `database_id` into
-   [wrangler.jsonc](./wrangler.jsonc):
+1. Sign in, create the D1 database, and copy the id it prints into the `DB` binding in
+   [cloudflare.config.ts](./cloudflare.config.ts):
 
     ```sh
-    vpx wrangler d1 create pitlane-cloudflare-db
+    vpx cf auth login
+    vpx cf d1 create --name pitlane-cloudflare-db
     ```
 
+    The id this template ships with belongs to no account. It is still shaped like a real
+    one, because `cf d1 migrations apply` takes a database id — a UUIDv4 or 32 hex digits,
+    never a name or a binding — and local dev needs something to key its simulated database
+    on.
+
 2. Create a Cloudflare API token with Workers and D1 edit permissions and save it as the
-   `CLOUDFLARE_API_TOKEN` repository secret on GitHub.
-3. Push to `main`: CI builds, applies migrations to the remote D1, and deploys with
-   `wrangler deploy`.
+   `CLOUDFLARE_API_TOKEN` repository secret on GitHub, and your account id as the
+   `CLOUDFLARE_ACCOUNT_ID` repository variable.
+3. Push to `main`: CI applies migrations to the remote D1, builds, and deploys the build
+   with `cf deploy --prebuilt`.
 
 To deploy from your machine instead:
 
 ```sh
-vp build
 vp run db:migrate:remote
-vpx wrangler deploy
+vp build
+vpx cf deploy --prebuilt --mode production
 ```
 
-The Vite build always runs in your CI (or locally) — never on Cloudflare.
+The Vite build always runs in your CI (or locally) — never on Cloudflare. `vp build` writes
+Cloudflare's Build Output to `.cloudflare/output`, which is what `cf deploy --prebuilt`
+uploads; `--mode production` is the mode that build recorded. Build last: loading the Vite
+config clears that directory, so `vp check` between the build and the deploy leaves nothing
+to upload. Build with Vite+ rather than `cf build`: `cf build` shells out to `vite build`,
+and this project's Vite is Vite+, whose command is `vp`.

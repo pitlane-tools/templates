@@ -27,19 +27,19 @@ export default defineConfig({
             },
             "db:migrate": {
                 dependsOn: ["db:generate"],
-                command: "wrangler d1 migrations apply DB --local",
+                command: "node db/apply-migrations.ts --local",
             },
             "db:migrate:remote": {
                 dependsOn: ["db:generate"],
-                command: "wrangler d1 migrations apply DB --remote",
+                command: "node db/apply-migrations.ts",
             },
             "db:reset": {
-                command: "rm -rf .wrangler/state/v3/d1",
+                command: "rm -rf .cloudflare/state/v3/d1",
                 cache: false,
             },
             "typegen:cloudflare": {
-                cache: { input: ["wrangler.jsonc"] },
-                command: "wrangler types",
+                cache: { input: ["cloudflare.config.ts"] },
+                command: "cf workers types",
             },
             typecheck: {
                 dependsOn: ["typegen:cloudflare"],
@@ -49,7 +49,7 @@ export default defineConfig({
         },
     },
     fmt: {
-        ignorePatterns: ["**/worker-configuration.d.ts", "dist/**"],
+        ignorePatterns: [".cloudflare/**"],
         printWidth: 100,
         tabWidth: 4,
         arrowParens: "avoid",
@@ -68,7 +68,7 @@ export default defineConfig({
         },
     },
     lint: {
-        ignorePatterns: ["**/worker-configuration.d.ts", "dist/**"],
+        ignorePatterns: [".cloudflare/**"],
         options: {
             typeAware: true,
             typeCheck: true,
