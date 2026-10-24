@@ -86,8 +86,7 @@ vp run typecheck     # typecheck using tsc
 [netlify/functions/server.mjs](./netlify/functions/server.mjs) wraps the built fetch
 handler in three lines: `path: "/*"` routes every request to the function, and
 `preferStatic: true` lets the publish directory (`dist/client`) win first so hashed
-assets are served from the CDN. Prefer the edge? See the
-[deploy guide](https://pitlane.tools/deploy/netlify) for the Edge Function variant.
+assets are served from the CDN.
 
 The function is production-only. [vite.config.ts](./vite.config.ts) turns off the Netlify
 plugin's functions emulation, so `vp run dev` renders from source through Vite instead of
