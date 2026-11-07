@@ -40,7 +40,7 @@ The umbrella also installs its Vite tooling in production. Apps that need only s
 
 ## Development
 
-This is a pnpm workspace.
+This is a pnpm workspace. All six starters use `pitlane@^1.0.0-alpha.3` and pin `remix@3.2.0`.
 
 ```sh
 vp install
