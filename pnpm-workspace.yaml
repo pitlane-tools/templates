@@ -27,8 +27,3 @@ minimumReleaseAgeExclude:
     - "cf"
     - "pitlane"
     - "remix"
-
-# The vite alias is Vite+ core 1.x, which implements the supported Vite 8 API.
-peerDependencyRules:
-    allowedVersions:
-        vite: "1"
