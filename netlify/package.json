@@ -20,9 +20,9 @@
         "eslint-plugin-prefer-let": "^4.2.2",
         "oxlint-tsgolint": "^0.22.1",
         "typescript": "^7.0.2",
-        "vite": "npm:@voidzero-dev/vite-plus-core@^1.0.0",
+        "vite": "npm:@voidzero-dev/vite-plus-core@^8.3.8001",
         "vite-plugin-devtools-json": "^1.0.0",
-        "vite-plus": "^1.0.0"
+        "vite-plus": "^1.8.0"
     },
     "packageManager": "pnpm@11.17.0"
 }
